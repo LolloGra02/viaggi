@@ -267,6 +267,96 @@ input[type=date].inp,input[type=time].inp,input[type=datetime-local].inp{display
 .themepick input:checked+span{border:2px solid var(--tt);color:var(--tt)}
 :focus-visible{outline:3px solid var(--c);outline-offset:2px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation-duration:.01ms!important}}
+
+/* ---- v3: stamps, route, timeline, gallery, motion */
+:root{--ink1:#B23A2E;--ink2:#2D4F8E;--ink3:#1D6B4F;--ink4:#7A3E8E}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink1:#F08C80;--ink2:#9DB7EE;--ink3:#86D0AE;--ink4:#D6A6E6}}
+:root[data-theme="dark"]{--ink1:#F08C80;--ink2:#9DB7EE;--ink3:#86D0AE;--ink4:#D6A6E6}
+.hero.tall{height:calc(330px + var(--safe-t))}
+.hero .scrim .big{font-size:46px;line-height:1;color:#fff;letter-spacing:-1px}
+.hero .sosbtn{box-shadow:0 1px 4px var(--shadow)}
+.stamp{--sc:var(--ink1);display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:var(--sz,96px);height:var(--sz,96px);flex-shrink:0;border-radius:50%;border:3px solid var(--sc);box-shadow:inset 0 0 0 3px transparent,inset 0 0 0 4.5px var(--sc);color:var(--sc);transform:rotate(var(--r,-8deg));text-align:center;text-transform:uppercase;line-height:1.05;padding:8px;opacity:.88;font-family:'Bricolage Grotesque','Be Vietnam Pro',sans-serif;-webkit-mask-image:radial-gradient(circle at 30% 35%,#000 55%,rgba(0,0,0,.78) 80%,rgba(0,0,0,.92) 100%);mask-image:radial-gradient(circle at 30% 35%,#000 55%,rgba(0,0,0,.78) 80%,rgba(0,0,0,.92) 100%)}
+.stamp.sq{border-radius:10px;height:auto;min-height:calc(var(--sz,96px) * .72);width:auto;min-width:var(--sz,96px);padding:8px 10px}
+.stamp b{font-size:calc(var(--sz,96px) * .16);font-weight:700;letter-spacing:.3px;max-width:100%;overflow-wrap:anywhere}
+.stamp small{font-size:calc(var(--sz,96px) * .085);font-weight:700;letter-spacing:.8px;font-family:'Be Vietnam Pro',sans-serif}
+.stamp i{font-style:normal;font-size:calc(var(--sz,96px) * .1);letter-spacing:2px}
+.stamp.in{animation:stampIn .55s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes stampIn{0%{transform:rotate(var(--r,-8deg)) scale(1.9);opacity:0}100%{transform:rotate(var(--r,-8deg)) scale(1);opacity:.88}}
+.stamps{display:flex;gap:16px;overflow-x:auto;margin:0 -20px;padding:10px 20px 14px;scrollbar-width:none}
+.stamps::-webkit-scrollbar{display:none}
+.hero .stamp{position:absolute;right:16px;bottom:14px;z-index:3;background:rgba(255,255,255,.06)}
+.card .stamp.mini{--sz:58px;padding:3px;margin:-6px -8px -6px -4px}
+.card .stamp.mini small:last-of-type,.card .stamp.mini i{display:none}
+/* route */
+.progress{display:flex;flex-direction:column;gap:6px}
+.route{list-style:none;margin:0;padding:0 0 0 30px;display:flex;flex-direction:column;gap:12px}
+.route li{position:relative}
+.route li::before{content:"";position:absolute;left:-19px;top:-12px;bottom:0;width:3px;background:var(--line2);border-radius:2px}
+.route li:first-child::before{top:50%}
+.route li:last-child::before{bottom:50%}
+.route li:only-child::before{display:none}
+.route li.done::before{background:var(--tt)}
+.route li.done+li::before{background:linear-gradient(var(--tt) 0 50%,var(--line2) 50%)}
+.route li.done+li.done::before{background:var(--tt)}
+.rdot{position:absolute;left:-28px;top:50%;width:21px;height:21px;margin-top:-10.5px;border-radius:50%;background:var(--bg);border:3px solid var(--line2);display:flex;align-items:center;justify-content:center;color:var(--on);z-index:1}
+li.done .rdot{background:var(--tt);border-color:var(--tt)}
+li.now .rdot{border-color:var(--c);background:var(--card)}
+li.now .rdot::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid var(--c);opacity:0;animation:ring 2s ease-out infinite}
+@keyframes ring{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.4);opacity:0}}
+.route .card{position:relative}
+/* day timeline */
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.tl li{display:grid;grid-template-columns:44px 22px minmax(0,1fr);align-items:center;position:relative}
+.tl li::before{content:"";position:absolute;left:54px;top:-8px;bottom:0;width:2px;background:var(--line2)}
+.tl li:first-child::before{top:50%}
+.tl li:last-child::before{bottom:50%}
+.tl li:only-child::before{display:none}
+.tl-time{font-size:13px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right;padding-right:2px}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--dash);justify-self:center;z-index:1}
+li.done .tl-dot{background:var(--tt);border-color:var(--tt)}
+li.next .tl-dot{background:var(--c);border-color:var(--c);box-shadow:0 0 0 4px var(--cs)}
+li.next .tl-time{color:var(--c)}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;grid-auto-flow:dense}
+.gal>button{aspect-ratio:1/1;border:none;padding:0;border-radius:6px}
+.gal>button.big{grid-column:span 2;grid-row:span 2}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.strip>.ph{aspect-ratio:1/1;border-radius:10px}
+.strip .more{position:relative}
+.strip .more::after{content:attr(data-more);position:absolute;inset:0;background:rgba(12,24,19,.55);color:#fff;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;border-radius:10px}
+/* color swatch auto */
+.swatches .auto{background:conic-gradient(from 200deg,#1D5A44,#2D4F8E,#7A3E8E,#B5481A,#C59B2A,#1D5A44)}
+/* motion */
+.enter{animation:enter .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ov{animation:fade .2s ease-out both}
+.ov>.sheet{animation:up .28s cubic-bezier(.2,.9,.25,1) both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+.check.pop span{animation:pop .42s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{0%{transform:scale(.5)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+a.card,a.tile,.it>a,button.card{transition:transform .12s ease}
+a.card:active,a.tile:active,button.card:active{transform:scale(.98)}
+.btn{transition:transform .12s ease,filter .12s}
+.btn:active{transform:scale(.98);filter:brightness(.95)}
+@media (prefers-reduced-motion: reduce){.enter,.ov,.ov>.sheet,.stamp.in,.check.pop span,li.now .rdot::after{animation:none!important}}
+
+/* ---- v4: map + illustrations */
+:root{--map-sea:#DCEBEE;--map-wave:rgba(45,100,120,.20);--map-land:#F6EBD2;--map-nb:#ECE7DA;--map-nbline:#CFC6B0;--map-ink:#3A4A42;--map-shadow:rgba(80,60,30,.16);--map-label:#22302A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--map-sea:#12232A;--map-wave:rgba(150,200,215,.13);--map-land:#33402F;--map-nb:#1C2621;--map-nbline:#2C3832;--map-ink:#BFD0C5;--map-shadow:rgba(0,0,0,.4);--map-label:#E7EEEA}}
+:root[data-theme="dark"]{--map-sea:#12232A;--map-wave:rgba(150,200,215,.13);--map-land:#33402F;--map-nb:#1C2621;--map-nbline:#2C3832;--map-ink:#BFD0C5;--map-shadow:rgba(0,0,0,.4);--map-label:#E7EEEA}
+.mapcard{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--map-sea);min-height:300px}
+.mapcard svg{display:block;width:100%;height:auto}
+.mapcard .maphint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--muted);font-size:14px}
+.mapcard .pin{cursor:pointer}
+.mapcard .pin:focus-visible circle{stroke:var(--c);stroke-width:4}
+.mapcard .lbl{font:700 13px 'Be Vietnam Pro',sans-serif;fill:var(--map-label);paint-order:stroke;stroke:var(--map-sea);stroke-width:4px;stroke-linejoin:round}
+.mapcard .ctry{font:700 30px 'Bricolage Grotesque',sans-serif;letter-spacing:6px;fill:var(--map-ink);opacity:.14;text-transform:uppercase}
+.mapcard .now-ring{transform-box:fill-box;transform-origin:center;animation:ring 2s ease-out infinite}
+.ill{display:block;flex-shrink:0}
+.catt.illw{background:none;width:56px;height:56px}
+.tile .illw,.card .illw{width:46px;height:46px}
+@media (prefers-reduced-motion: reduce){.mapcard .now-ring{animation:none}}
 </style>
 </head>
 <body>
@@ -651,6 +741,7 @@ function render(keepScroll) {
       else if (sec === 'note') html = vNote(t, q);
       else if (sec === 'docs') html = vDocs(t, q);
       else if (sec === 'sos') html = vSos(t);
+      else if (sec === 'foto') html = vFoto(t);
     }
     if (!R.t) document.documentElement.style.setProperty('--t', '#1D5A44');
   } catch (e) {
@@ -658,8 +749,11 @@ function render(keepScroll) {
     html = `<div class="page"><a class="back" href="#/">${icon('left')}I miei viaggi</a><div class="card">Qualcosa è andato storto: ${esc(e.message)}</div></div>`;
   }
   $('#app').innerHTML = html;
+  if (!keepScroll) { const pg = $('#app > .page'); if (pg) pg.classList.add('enter'); }
+  ENTER = !keepScroll;
   hydrate($('#app'));
   after();
+  POP = null;
   window.scrollTo(0, keepScroll ? y : 0);
 }
 const rerender = () => render(true);
@@ -672,8 +766,220 @@ function after() {
   const st = $('#storage');
   if (st && navigator.storage && navigator.storage.estimate) navigator.storage.estimate().then((e) => { st.textContent = 'Dati salvati solo su questo dispositivo · ' + nf((e.usage || 0) / 1048576, 1) + ' MB usati'; }).catch(() => {});
   if (R.p && R.p[2] === 'cambio') cxUpdate();
+  const tm = $('#tripmap'); if (tm && R.t) drawMap(tm, R.t);
+  const big = $('.money .big[data-count]');
+  if (big && ENTER && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const to = +big.dataset.count, t0 = performance.now();
+    const step = (now) => { const p = Math.min(1, (now - t0) / 700), e = 1 - Math.pow(1 - p, 3); big.textContent = fmtEur(to * e); if (p < 1 && document.body.contains(big)) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
 }
 window.addEventListener('hashchange', () => { closeLayer(); render(false); });
+
+
+/* ============================================================ v3 helpers */
+const INKS = ['var(--ink1)', 'var(--ink2)', 'var(--ink3)', 'var(--ink4)'];
+function hashStr(x) { let h = 0; for (const c of String(x)) h = (h * 31 + c.charCodeAt(0)) | 0; return Math.abs(h); }
+function stageDone(s) {
+  const [, b] = stageRange(s); if (b && b < todayISO()) return true;
+  const its = s.days.flatMap((d) => d.items).filter((i) => i.cat !== 'trasporto');
+  return its.length > 0 && its.every((i) => i.done);
+}
+function stampHTML(t, s, opts = {}) {
+  const h = hashStr(s.id), [a, b] = stageRange(s);
+  const r = ((h % 17) - 8) + (h % 2 ? -4 : 4);
+  const sq = !opts.round && h % 3 === 0;
+  const yr = dOf(b || t.end).getFullYear();
+  return `<div class="stamp${sq ? ' sq' : ''}${opts.cls ? ' ' + opts.cls : ''}" style="--r:${r}deg;--sc:${INKS[h % 4]};${opts.size ? '--sz:' + opts.size + 'px' : ''}" aria-label="Timbro ${esc(s.name)}">
+    <small>${esc(t.name)}</small><b>${esc(s.name.split('·')[0].trim())}</b>${a ? `<small>${esc(fmtRange(a, b))} ${yr}</small>` : ''}<i>★ ★ ★</i></div>`;
+}
+function tripPhotos(t) {
+  const out = [];
+  allDays(t).forEach(({ s, d, di }) => {
+    const ks = [...(d.photos || []).map((k) => ({ k, it: null }))];
+    d.items.forEach((it) => (it.photos || []).forEach((k) => ks.push({ k, it })));
+    if (ks.length) out.push({ s, d, di, photos: ks });
+  });
+  return out;
+}
+let POP = null, ENTER = true;
+async function colorFromBlob(key) {
+  try {
+    const u = await blobURL(key); if (!u) return null;
+    const img = new Image(); await new Promise((r, j) => { img.onload = r; img.onerror = j; img.src = u; });
+    const c = document.createElement('canvas'); c.width = 48; c.height = 48;
+    const x = c.getContext('2d'); x.drawImage(img, 0, 0, 48, 48);
+    const px = x.getImageData(0, 0, 48, 48).data;
+    const bins = new Array(24).fill(0).map(() => ({ w: 0, sx: 0, sy: 0, s: 0 }));
+    for (let i = 0; i < px.length; i += 4) {
+      const r = px[i] / 255, g = px[i + 1] / 255, bl = px[i + 2] / 255;
+      const mx = Math.max(r, g, bl), mn = Math.min(r, g, bl), l = (mx + mn) / 2, d = mx - mn;
+      if (d < 0.08 || l < 0.12 || l > 0.9) continue;
+      const sat = d / (1 - Math.abs(2 * l - 1));
+      if (sat < 0.22) continue;
+      let hue = mx === r ? ((g - bl) / d) % 6 : mx === g ? (bl - r) / d + 2 : (r - g) / d + 4; hue = (hue * 60 + 360) % 360;
+      const w = sat * sat * (1 - Math.abs(l - 0.5) * 1.4);
+      const bn = bins[Math.floor(hue / 15) % 24]; bn.w += w; bn.sx += Math.cos(hue * Math.PI / 180) * w; bn.sy += Math.sin(hue * Math.PI / 180) * w; bn.s += sat * w;
+    }
+    const hueOf = (bn) => (Math.atan2(bn.sy, bn.sx) * 180 / Math.PI + 360) % 360;
+    const muddy = (h) => h > 28 && h < 72;
+    const ranked = [...bins].sort((a, b) => b.w - a.w);
+    let best = ranked[0];
+    if (best.w < 3) return null;
+    if (muddy(hueOf(best))) { const alt = ranked.find((bn) => bn.w > best.w * 0.3 && !muddy(hueOf(bn))); if (alt) best = alt; }
+    const hue = hueOf(best);
+    const sat = Math.min(0.68, Math.max(0.42, best.s / best.w));
+    return hslHex(hue, muddy(hue) ? Math.max(sat, 0.6) : sat, muddy(hue) ? 0.32 : 0.31);
+  } catch (e) { return null; }
+}
+function hslHex(h, s, l) {
+  const k = (n) => (n + h / 30) % 12, a = s * Math.min(l, 1 - l);
+  const f = (n) => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))));
+  return '#' + [f(0), f(8), f(4)].map((v) => v.toString(16).padStart(2, '0')).join('').toUpperCase();
+}
+async function autoColor(t) { if (!t.colorAuto || !t.cover) return; const c = await colorFromBlob(t.cover); if (c) t.color = c; }
+
+
+/* ============================================================ illustrations */
+const ILL_O = '#2A332F';
+const ILL = {
+  visita: ['#FCE3D3', `<rect x="14" y="36" width="20" height="5" rx="1" fill="#E9D8B4"/><rect x="17" y="27" width="14" height="9" fill="#F7EEDB"/><rect x="22" y="30" width="4" height="6" rx="1" fill="#B5481A"/><path d="M9 28.5 15 23.5h18l6 5c-5-1.6-25-1.6-30 0z" fill="#D2492F"/><rect x="19.5" y="16.5" width="9" height="7" fill="#F7EEDB"/><path d="M12 18l5-4.5h14l5 4.5c-4-1.4-20-1.4-24 0z" fill="#D2492F"/><path d="M24 13.5V8"/><circle cx="24" cy="7.5" r="1.7" fill="#E7B13A"/>`],
+  natura: ['#DDF0E4', `<circle cx="34" cy="14" r="5" fill="#F2B33D"/><path d="M5 38 18 18l12 20z" fill="#69B086"/><path d="M15 38 29 21l14 17z" fill="#2F7D57"/><path d="M25.6 25.8 29 21l3.4 4.8-1.8-.9-1.6 1.6-1.6-1.6z" fill="#fff"/><path d="M5 38h38" />`],
+  esperienza: ['#FFE9C7', `<g transform="rotate(-12 24 25)"><path d="M8 17h32v5a3 3 0 0 0 0 6v5H8v-5a3 3 0 0 0 0-6z" fill="#F08A4B"/><path d="M31 18v14" stroke-dasharray="2 2.2"/><path d="m19 19.5 1.7 3.4 3.7.5-2.7 2.6.7 3.7-3.4-1.8-3.3 1.8.6-3.7-2.7-2.6 3.8-.5z" fill="#FFF4DA"/></g>`],
+  cibo: ['#FDE7D6', `<path d="M17 8c-2 2.5 2 3.5 0 6M24 7c-2 2.5 2 3.5 0 6M31 8c-2 2.5 2 3.5 0 6" stroke="#B9A894"/><path d="m29 23 12-15M32 24l12-12" stroke="#8A5A2B" stroke-width="2.2"/><path d="M7 25h34a17 13 0 0 1-34 0z" fill="#F7F2E8"/><path d="M10.5 31.5h27" stroke="#2D6FA8" stroke-width="2.2"/><ellipse cx="24" cy="25" rx="17" ry="3" fill="#E8A04A"/><path d="M16 24.5c2-1 4 1 6 0s4 1 6 0" stroke="#F7E3B5" stroke-width="1.4"/><ellipse cx="31" cy="24.6" rx="2.2" ry="1" fill="#4FA35F" stroke="none"/><ellipse cx="14" cy="24.8" rx="2" ry=".9" fill="#4FA35F" stroke="none"/><path d="M19 38h10" />`],
+  trasporto: ['#E3ECF7', `<rect x="12" y="9" width="24" height="27" rx="5" fill="#F2B33D"/><rect x="15" y="13" width="18" height="10" rx="2" fill="#BFE0F2"/><path d="M15 27h18"/><circle cx="17.5" cy="31" r="1.8" fill="#fff"/><circle cx="30.5" cy="31" r="1.8" fill="#fff"/><rect x="14" y="36" width="5" height="4" rx="1" fill="${'#2A332F'}"/><rect x="29" y="36" width="5" height="4" rx="1" fill="${'#2A332F'}"/>`],
+  libero: ['#FFF1CC', `<circle cx="35" cy="13" r="5" fill="#F2B33D"/><ellipse cx="24" cy="39" rx="17" ry="3.2" fill="#EBCB8B"/><path d="M22 23.5 26.5 38"/><path d="M9 25c4-11 22-14 28-3z" fill="#E05A47"/><path d="M17 21.6c2-4 6-6.5 10-7.5M27.5 22.6c.5-3 0-6.4-1-8.5" stroke="#FCE3D3"/>`],
+  altro: ['#E8E4F3', `<path d="M24 39s-11-11-11-18a11 11 0 0 1 22 0c0 7-11 18-11 18z" fill="#7A5BB0"/><circle cx="24" cy="21" r="4" fill="#fff"/>`],
+  map: ['#DDF0E4', `<path d="M7 14l10-4 13 4 11-4v25l-11 4-13-4-10 4z" fill="#F7F2E8"/><path d="M17 10v25l13 4V14z" fill="#E9DFC6"/><path d="M11 30c4-2 6 1 9-2s5-6 9-5 6-4 8-6" stroke="#D2492F" stroke-dasharray="2.2 2.2"/><path d="M34 13.5s-3.5-3.4-3.5-5.6a3.5 3.5 0 0 1 7 0c0 2.2-3.5 5.6-3.5 5.6z" fill="#D2492F"/>`],
+  doc: ['#E3ECF7', `<rect x="13" y="7" width="22" height="33" rx="3" fill="#2D4F8E"/><circle cx="24" cy="20" r="6" fill="none" stroke="#E7B13A"/><path d="M18 20h12M24 14c-3 4-3 8 0 12M24 14c3 4 3 8 0 12" stroke="#E7B13A" stroke-width="1.2"/><rect x="18" y="31" width="12" height="2.4" rx="1" fill="#E7B13A" stroke="none"/>`],
+  img: ['#E8E4F3', `<rect x="7" y="15" width="34" height="23" rx="4" fill="#3D4A5C"/><rect x="16" y="10.5" width="11" height="6" rx="2" fill="#3D4A5C"/><circle cx="24" cy="26.5" r="7.5" fill="#BFE0F2"/><circle cx="24" cy="26.5" r="3.2" fill="#2D4F8E"/><rect x="33" y="18.5" width="4" height="2.5" rx="1" fill="#F2B33D" stroke="none"/>`],
+  wallet: ['#FDE7D6', `<circle cx="35" cy="13" r="6" fill="#F2B33D"/><circle cx="35" cy="13" r="3.4" fill="none" stroke="#C8901F"/><rect x="7" y="16" width="29" height="22" rx="4" fill="#B5481A"/><path d="M7 21h29" stroke="#8A3612"/><rect x="26" y="23" width="13" height="9" rx="2.5" fill="#D9683A"/><circle cx="31" cy="27.5" r="1.6" fill="#F7F2E8" stroke="none"/>`],
+  bed: ['#E3ECF7', `<rect x="7" y="13" width="5" height="25" rx="1.5" fill="#8A5A2B"/><rect x="11" y="25" width="31" height="8" rx="2" fill="#F7F2E8"/><rect x="21" y="22.5" width="21" height="10.5" rx="2.5" fill="#2D4F8E"/><rect x="12.5" y="20" width="8.5" height="5.5" rx="2.5" fill="#fff"/><path d="M11 33v5M42 33v5"/><path d="M30 10h3l-3 3.5h3M36 6h2.4L36 9h2.4" stroke="#7A8CA8" stroke-width="1.3"/>`],
+  swap: ['#DDF0E4', `<rect x="6" y="13" width="27" height="17" rx="2.5" fill="#8FC79F"/><circle cx="19.5" cy="21.5" r="4.2" fill="#5FA67D"/><path d="M9.5 17h3M26.5 26h3" stroke="#2F7D57"/><circle cx="33" cy="31" r="8.5" fill="#F2B33D"/><circle cx="33" cy="31" r="5.4" fill="none" stroke="#C8901F"/><path d="M14 8.5h12l-2.5-2.5M34 40.5H22l2.5 2.5" stroke="#2F7D57"/>`],
+  list: ['#FFF1CC', `<rect x="12" y="7" width="25" height="33" rx="3" fill="#F7F2E8"/><path d="M12 12h-2.5M12 18h-2.5M12 24h-2.5M12 30h-2.5M12 36h-2.5" stroke-width="2"/><path d="M18 15h13M18 21h9" stroke="#B9A894"/><path d="m18 29 3.2 3.2L30 24" stroke="#2F7D57" stroke-width="2.6"/>`]
+};
+function ill(name, size = 46) {
+  const d = ILL[name] || ILL.altro;
+  return `<svg class="ill" width="${size}" height="${size}" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="${d[0]}"/><g fill="none" stroke="${ILL_O}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${d[1]}</g></svg>`;
+}
+
+/* ============================================================ map */
+let WORLDP = null, WORLD = null;
+function loadWorld() {
+  if (WORLDP) return WORLDP;
+  WORLDP = (async () => {
+    if (!window.topojson) await loadScript('vendor/topojson-client.min.js');
+    const r = await fetch('vendor/countries-50m.json'); const topo = await r.json();
+    WORLD = topojson.feature(topo, topo.objects.countries).features;
+    return WORLD;
+  })();
+  WORLDP.catch(() => { WORLDP = null; });
+  return WORLDP;
+}
+const mapCountryOf = (t) => t.mapCountry || t.country || t.name;
+function polysOf(f) { const g = f.geometry; if (!g) return []; return g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : []; }
+function ringBBox(r) { let a = [180, 90, -180, -90]; r.forEach(([x, y]) => { a = [Math.min(a[0], x), Math.min(a[1], y), Math.max(a[2], x), Math.max(a[3], y)]; }); return a; }
+function stageGroups(t) {
+  const groups = [];
+  t.stages.forEach((s, i) => {
+    if (s.lat == null || s.lng == null || s.lat === '' || s.lng === '') return;
+    const g = groups.find((x) => Math.abs(x.lat - s.lat) < 0.06 && Math.abs(x.lng - s.lng) < 0.06);
+    if (g) { g.idx.push(i); g.stages.push(s); } else groups.push({ lat: +s.lat, lng: +s.lng, idx: [i], stages: [s] });
+  });
+  return groups;
+}
+async function drawMap(el, t) {
+  const groups = stageGroups(t);
+  let world = null;
+  try { world = await loadWorld(); } catch (e) { world = null; }
+  if (!document.body.contains(el)) return;
+  const name = String(mapCountryOf(t) || '').toLowerCase();
+  const ctry = world && world.find((f) => (f.properties.name || '').toLowerCase() === name);
+  if (!ctry && !groups.length) { el.innerHTML = `<div class="maphint">Scegli il paese nelle impostazioni del viaggio per vedere la mappa.</div>`; return; }
+  // bounds: the country's largest polygon + all stage points
+  let bb = null;
+  if (ctry) { const ps = polysOf(ctry).map((p) => ({ b: ringBBox(p[0]), n: p[0].length })).sort((a, b) => b.n - a.n); bb = ps[0].b.slice(); ps.slice(1).forEach(({ b }) => { if (b[2] - b[0] < 6 && Math.abs(b[0] - bb[0]) < 8) bb = [Math.min(bb[0], b[0]), Math.min(bb[1], b[1]), Math.max(bb[2], b[2]), Math.max(bb[3], b[3])]; }); }
+  groups.forEach((g) => { bb = bb ? [Math.min(bb[0], g.lng), Math.min(bb[1], g.lat), Math.max(bb[2], g.lng), Math.max(bb[3], g.lat)] : [g.lng - 1, g.lat - 1, g.lng + 1, g.lat + 1]; });
+  let [x0, y0, x1, y1] = bb;
+  const k = Math.cos(((y0 + y1) / 2) * Math.PI / 180);
+  let pw = (x1 - x0) * k, ph = y1 - y0;
+  const pad = Math.max(pw, ph) * 0.1 + 0.3;
+  x0 -= pad / k; x1 += pad / k; y0 -= pad; y1 += pad; pw = (x1 - x0) * k; ph = y1 - y0;
+  const W = Math.max(300, Math.round(el.clientWidth || 350));
+  let H = Math.round(W * ph / pw); const Hc = Math.max(280, Math.min(470, H));
+  if (H > Hc) { const need = ph * W / Hc / k - (x1 - x0); x0 -= need / 2; x1 += need / 2; } else if (H < Hc) { const need = (x1 - x0) * k * Hc / W - ph; y0 -= need / 2; y1 += need / 2; }
+  H = Hc;
+  const sx = W / (x1 - x0), sy = H / (y1 - y0);
+  const prj = (lon, lat) => [(lon - x0) * sx, (y1 - lat) * sy];
+  const pathOf = (f) => {
+    let d = '';
+    polysOf(f).forEach((poly) => poly.forEach((r) => {
+      const b = ringBBox(r); if (b[2] < x0 || b[0] > x1 || b[3] < y0 || b[1] > y1) return;
+      let last = null, seg = '';
+      r.forEach(([lo, la]) => { const [x, y] = prj(lo, la); if (last && Math.abs(x - last[0]) < 0.9 && Math.abs(y - last[1]) < 0.9) return; seg += (seg ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1); last = [x, y]; });
+      if (seg) d += seg + 'Z';
+    }));
+    return d;
+  };
+  const nbs = world ? world.filter((f) => f !== ctry && polysOf(f).some((p) => { const b = ringBBox(p[0]); return !(b[2] < x0 || b[0] > x1 || b[3] < y0 || b[1] > y1); })) : [];
+  const today = todayISO();
+  const pts = groups.map((g) => {
+    const [x, y] = prj(g.lng, g.lat);
+    const done = g.stages.every(stageDone);
+    const now = g.stages.some((s) => { const [a, b] = stageRange(s); return a && a <= today && today <= b; });
+    return { ...g, x, y, done, now };
+  });
+  // route: curved dashed segments in visiting order
+  const order = []; t.stages.forEach((s) => { const g = pts.find((p) => p.stages.includes(s)); if (g && order[order.length - 1] !== g) order.push(g); });
+  let route = '';
+  order.forEach((p, i) => {
+    if (!i) { route += `M${p.x.toFixed(1)} ${p.y.toFixed(1)}`; return; }
+    const q = order[i - 1], mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2, dx = p.x - q.x, dy = p.y - q.y, bend = (i % 2 ? 0.22 : -0.22);
+    route += `Q${(mx - dy * bend).toFixed(1)} ${(my + dx * bend).toFixed(1)} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
+  });
+  // labels with simple collision avoidance
+  const used = [];
+  const labels = pts.map((p) => {
+    const nm = p.stages[0].name.split('·')[0].trim();
+    const wEst = nm.length * 7.6 + 20;
+    const clash = (side, y) => used.some((u) => u.right === side && Math.abs(u.y - y) < 15 && Math.abs(u.x - p.x) < 120);
+    let right = p.x + wEst < W - 6 ? true : false;
+    if (right && p.x > W * 0.62 && p.x - wEst > 6) right = false;
+    let ly = p.y + 4;
+    if (clash(right, ly) && !clash(!right, ly) && (right ? p.x - wEst > 6 : p.x + wEst < W - 6)) right = !right;
+    for (let tries = 0; tries < 6 && clash(right, ly); tries++) ly += 15;
+    used.push({ x: p.x, y: ly, right });
+    return `<text class="lbl" x="${(p.x + (right ? 17 : -17)).toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${right ? 'start' : 'end'}">${esc(nm)}</text>`;
+  });
+  const pinsHTML = pts.map((p) => {
+    const lab = p.idx.map((i) => i + 1).join('·'), r = lab.length > 2 ? 14 : 12;
+    const fill = p.done ? 'var(--tt)' : p.now ? 'var(--c)' : 'var(--card)';
+    const tc = p.done || p.now ? '#fff' : 'var(--tt)';
+    return `<a class="pin" href="#/t/${t.id}/s/${p.stages[0].id}" aria-label="Tappa ${lab}: ${esc(p.stages[0].name)}">
+      ${p.now ? `<circle class="now-ring" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r + 6}" fill="none" stroke="var(--c)" stroke-width="2"/>` : ''}
+      <circle cx="${p.x.toFixed(1)}" cy="${(p.y + 2).toFixed(1)}" r="${r}" fill="var(--map-shadow)"/>
+      <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r}" fill="${fill}" stroke="var(--tt)" stroke-width="2.5"/>
+      <text x="${p.x.toFixed(1)}" y="${(p.y + 4).toFixed(1)}" text-anchor="middle" style="font:700 ${lab.length > 2 ? 10 : 12}px 'Be Vietnam Pro',sans-serif;fill:${tc}">${lab}</text></a>`;
+  }).join('');
+  const cp = ctry ? pathOf(ctry) : '';
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Mappa dell'itinerario${ctry ? ' in ' + esc(t.name) : ''}">
+    <defs><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+      <pattern id="waves" width="28" height="16" patternUnits="userSpaceOnUse"><path d="M2 9c3-3 6-3 9 0" fill="none" stroke="var(--map-wave)" stroke-width="1.4" stroke-linecap="round"/></pattern></defs>
+    <rect width="${W}" height="${H}" fill="var(--map-sea)"/><rect width="${W}" height="${H}" fill="url(#waves)"/>
+    <g filter="url(#rough)">${nbs.map((f) => `<path d="${pathOf(f)}" fill="var(--map-nb)" stroke="var(--map-nbline)" stroke-width="1"/>`).join('')}
+      ${cp ? `<path d="${cp}" fill="var(--map-shadow)" transform="translate(3 4)"/><path d="${cp}" fill="var(--map-land)" stroke="var(--map-ink)" stroke-width="1.6" stroke-linejoin="round"/>` : ''}</g>
+    ${ctry ? `<text class="ctry" x="${W - 14}" y="${H - 16}" text-anchor="end">${esc(t.name)}</text>` : ''}
+    <g transform="translate(${W - 30} 32)" fill="none" stroke="var(--map-ink)" stroke-width="1.4" opacity=".55"><circle r="13"/><path d="M0-10 4 0 0 10-4 0z" fill="var(--map-ink)" stroke="none"/><text y="-17" text-anchor="middle" style="font:700 10px 'Be Vietnam Pro',sans-serif;fill:var(--map-ink);stroke:none">N</text></g>
+    ${route ? `<path d="${route}" fill="none" stroke="var(--tt)" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="1 7"/>` : ''}
+    ${labels.join('')}${pinsHTML}
+  </svg>${!groups.length ? '<div class="maphint" style="align-items:flex-end;padding-bottom:18px">Aggiungi la posizione alle tappe (Modifica tappa) per vederle sulla mappa.</div>' : ''}`;
+}
+function parseCoords(v) {
+  const m = String(v || '').replace(/[°NE]/gi, '').match(/(-?\d+(?:[.,]\d+)?)\s*[,; ]\s*(-?\d+(?:[.,]\d+)?)/);
+  if (!m) return null;
+  const lat = parseFloat(m[1].replace(',', '.')), lng = parseFloat(m[2].replace(',', '.'));
+  return Math.abs(lat) <= 90 && Math.abs(lng) <= 180 ? { lat, lng } : null;
+}
 
 /* ============================================================ views */
 function tripHero(t) {
@@ -705,6 +1011,7 @@ function vHome() {
     ${featured ? tripHero(featured) : `<div class="card empty">Non c'è ancora nessun viaggio.<br>Creane uno nuovo oppure importa un file di viaggio.</div>`}
     ${fut.length ? `<section class="stack8"><span class="kicker">In programma</span>${fut.map(tripRow).join('')}</section>` : ''}
     ${pas.length ? `<section class="stack8"><span class="kicker">Passati</span>${pas.map(tripRow).join('')}</section>` : ''}
+    ${(() => { const st = ts.flatMap((t) => t.stages.filter(stageDone).map((s) => ({ t, s }))); return st.length ? `<section class="stack8"><div class="secthead"><span class="kicker">I miei timbri</span><span class="small">${st.length} ${st.length === 1 ? 'tappa' : 'tappe'}</span></div><div class="stamps">${st.map(({ t, s }) => `<a href="#/t/${t.id}/s/${s.id}" style="padding:4px">${stampHTML(t, s, { size: 100 })}</a>`).join('')}</div></section>` : ''; })()}
     <a class="btn dash" href="#/new">${icon('plus')} Nuovo viaggio</a>
     <div class="row2"><button class="btn sec sm" data-a="import">${icon('download', 18)} Importa</button><button class="btn sec sm" data-a="backup">${icon('upload', 18)} Backup</button></div>
     <p class="foot" id="storage"></p>
@@ -739,8 +1046,9 @@ function vTripForm(t) {
       ${fieldHTML({ k: 'taxiPhrase', label: 'Frase per il tassista', ph: 'Per favore, mi porti a questo indirizzo' }, v.taxiPhrase)}
       ${fieldHTML({ k: 'taxiThanks', label: 'Grazie (nella lingua locale)' }, v.taxiThanks)}
       ${fieldHTML({ k: 'tz', label: 'Fuso orario del viaggio', type: 'select', options: tzOptions(v.tz) }, v.tz || homeTz())}
+      ${fieldHTML({ k: 'mapCountry', label: 'Paese sulla mappa (nome in inglese)', type: 'combo', ph: 'Es. Brazil', options: WORLD ? WORLD.map((f) => f.properties.name).filter(Boolean).sort() : [] }, v.mapCountry || '')}
       ${fieldHTML({ k: 'travellers', label: 'Compagni di viaggio', ph: 'facoltativo' }, v.travellers)}
-      <div class="fld"><span>Colore</span><div class="swatches">${COLORS.map((c) => `<label><input type="radio" name="color" value="${c}"${c === v.color ? ' checked' : ''}><span style="background:${c}" aria-label="${c}"></span></label>`).join('')}</div></div>
+      <div class="fld"><span>Colore</span><div class="swatches"><label><input type="radio" name="color" value="auto"${v.colorAuto || isNew ? ' checked' : ''}><span class="auto" aria-label="Automatico dalla foto"></span></label>${COLORS.map((c) => `<label><input type="radio" name="color" value="${c}"${c === v.color && !v.colorAuto && !isNew ? ' checked' : ''}><span style="background:${c}" aria-label="${c}"></span></label>`).join('')}</div><span class="small" style="font-weight:400">Il primo prende il colore dalla foto di copertina.</span></div>
       ${isNew && others.length ? `<label class="fld"><span>Copia la checklist «Da portare» da</span><select class="inp" name="copyFrom"><option value="">Non copiare</option>${others.map((o) => `<option value="${o.id}">${esc(o.name)}</option>`).join('')}</select></label>` : ''}
       ${!isNew ? `<div class="card row"><div class="ph thumb84" ${t.cover ? `data-blob="${esc(t.cover)}"` : ''} style="background-color:${esc(t.color)}"><span class="phi">${icon('img', 24, 1.6)}</span></div><div class="grow stack8"><b>Foto di copertina</b><button type="button" class="btn sec sm" data-a="tripCover">${icon('cam', 18)} Cambia copertina</button></div></div>` : ''}
       <button class="btn" type="submit">${isNew ? 'Crea viaggio' : 'Salva'}</button>
@@ -783,16 +1091,25 @@ function todayCard(t) {
 function vTrip(t) {
   const spent = t.expenses.reduce((a, e) => a + toEur(t, e), 0);
   const items = t.lists.bring.length + t.lists.buy.length, done = [...t.lists.bring, ...t.lists.buy].filter((x) => x.done).length;
-  const wide = (href, ic, cls, title, sub) => `<a class="card row" href="${href}" style="padding:13px 16px"><span class="icotile ${cls}">${icon(ic, 24)}</span><span class="grow"><b style="font-size:17px">${title}</b><br><span class="small">${sub}</span></span><span class="chev">${icon('right')}</span></a>`;
-  const tile = (href, ic, cls, title, sub) => `<a class="tile" href="${href}"><span class="icotile ${cls}">${icon(ic, 20)}</span><span><b>${title}</b><br><span class="small">${sub}</span></span></a>`;
-  return `<div class="page">
-    <div class="topbar">${back('#/', 'I miei viaggi')}<div class="row8"><a class="sosbtn" href="#/t/${t.id}/sos" aria-label="Emergenze">${icon('alert', 16)} SOS</a><a class="iconbtn" href="#/t/${t.id}/edit" aria-label="Impostazioni viaggio">${icon('sliders')}</a></div></div>
-    <div class="stack8" style="gap:4px"><h1 class="disp h-xl">${esc(t.name)}</h1>
-      <p class="sub">${esc(fmtRange(t.start, t.end))} ${dOf(t.end).getFullYear()} · ${t.stages.length} tappe${t.travellers ? ' · ' + esc(t.travellers) : ''}</p></div>
+  const wide = (href, ic, cls, title, sub) => `<a class="card row" href="${href}" style="padding:13px 16px"><span class="illw">${ill(ic, 46)}</span><span class="grow"><b style="font-size:17px">${title}</b><br><span class="small">${sub}</span></span><span class="chev">${icon('right')}</span></a>`;
+  const tile = (href, ic, cls, title, sub) => `<a class="tile" href="${href}"><span class="illw">${ill(ic, 44)}</span><span><b>${title}</b><br><span class="small">${sub}</span></span></a>`;
+  const st = tripStatus(t);
+  const gal = tripPhotos(t).flatMap((g) => g.photos);
+  return `<div class="page flush">
+    <div class="hero tall">${ph(t.cover, 'fill', '', 'img', 40)}
+      <a class="circ tl" href="#/" aria-label="I miei viaggi">${icon('left')}</a>
+      <div class="tr"><a class="sosbtn" href="#/t/${t.id}/sos" aria-label="Emergenze">${icon('alert', 16)} SOS</a><a class="circ" href="#/t/${t.id}/edit" aria-label="Impostazioni viaggio">${icon('sliders')}</a></div>
+      <div class="scrim"><span class="kicker" style="color:rgba(255,255,255,.85)">${esc(st.k)} · ${esc(st.l)}</span>
+        <h1 class="disp big">${esc(t.name)}</h1>
+        <span class="s">${esc(fmtRange(t.start, t.end))} ${dOf(t.end).getFullYear()} · ${t.stages.length} tappe${t.travellers ? ' · ' + esc(t.travellers) : ''}</span></div>
+    </div>
     ${todayCard(t)}
     ${clocksHTML(t)}
     ${wide('#/t/' + t.id + '/itin', 'map', '', 'Itinerario', 'Tappe, giorni e attrazioni')}
     ${wide('#/t/' + t.id + '/docs', 'doc', 'c', 'Documenti', t.docs.length + ' documenti · voli, alloggi, assicurazione')}
+    ${gal.length ? `<a class="card stack10" href="#/t/${t.id}/foto"><div class="secthead"><b style="font-size:17px">Foto del viaggio</b><span class="small">${gal.length} foto ${icon('right', 14)}</span></div>
+      <div class="strip">${gal.slice(0, 4).map((p, i) => `<div class="ph${i === 3 && gal.length > 4 ? ' more' : ''}" data-blob="${esc(p.k)}"${i === 3 && gal.length > 4 ? ` data-more="+${gal.length - 3}"` : ''}><span class="phi">${icon('img', 16, 1.6)}</span></div>`).join('')}</div></a>`
+      : wide('#/t/' + t.id + '/foto', 'img', '', 'Foto del viaggio', 'Le foto che aggiungi compaiono qui')}
     <div class="row2">
       ${tile('#/t/' + t.id + '/spese', 'wallet', 'c', 'Spese', fmtEur(spent) + ' spesi')}
       ${tile('#/t/' + t.id + '/pren', 'bed', '', 'Prenotazioni', t.lodgings.length + ' alloggi · ' + t.transports.length + ' trasporti')}
@@ -805,32 +1122,40 @@ function vTrip(t) {
 function vItin(t) {
   const today = todayISO();
   const nd = daysBetween(t.start, t.end) + 1;
+  const nDone = t.stages.filter(stageDone).length;
+  const pct = t.stages.length ? Math.round((nDone / t.stages.length) * 100) : 0;
   return `<div class="page">
     ${back('#/t/' + t.id, t.name)}
     <div class="stack8" style="gap:4px"><h1 class="disp h-l">Itinerario</h1><p class="sub">${t.stages.length} tappe · ${nd} giorni · ${countPhotos(t)} foto</p></div>
-    <div class="stack10">
+    ${t.stages.length || t.mapCountry ? `<div class="mapcard" id="tripmap"><div class="maphint"><div class="spin" style="margin:0"></div></div></div>` : ''}
+    ${t.stages.length ? `<div class="progress"><div class="secthead"><span class="small"><b style="color:var(--ink)">${nDone} di ${t.stages.length}</b> tappe completate</span><span class="small">${pct}%</span></div><div class="bar light"><i style="width:${Math.max(pct, 2)}%"></i></div></div>` : ''}
+    <ol class="route">
     ${t.stages.map((s, i) => {
       const [a, b] = stageRange(s);
       const now = a && a <= today && today <= b;
+      const done = stageDone(s);
       const nIt = s.days.reduce((x, d) => x + d.items.filter((it) => it.cat !== 'trasporto').length, 0);
       const nPh = s.days.reduce((x, d) => x + (d.photos || []).length + d.items.reduce((y, it) => y + (it.photos || []).length, 0), 0);
-      return `<a class="card row${now ? ' hl' : ''}" href="#/t/${t.id}/s/${s.id}" style="padding:10px">
+      return `<li class="${done ? 'done' : ''}${now && !done ? ' now' : ''}"><span class="rdot">${done ? icon('check', 11, 3.5) : ''}</span>
+        <a class="card row${now ? ' hl' : ''}" href="#/t/${t.id}/s/${s.id}" style="padding:10px">
         <div style="position:relative">${ph(s.cover, 'thumb84')}<span class="num${now ? ' on' : ''}">${i + 1}</span></div>
-        <div class="grow">${now ? '<div class="kicker" style="color:var(--tt)">In corso</div>' : ''}<div class="h-s">${esc(s.name)}</div>
+        <div class="grow">${now ? '<div class="kicker" style="color:var(--tt)">In corso</div>' : done ? '<div class="kicker" style="color:var(--tt)">Completata</div>' : ''}<div class="h-s">${esc(s.name)}</div>
           <div class="small">${a ? esc(fmtRange(a, b)) + ' · ' : ''}${nIt} attività${nPh ? ' · ' + nPh + ' foto' : ''}</div></div>
-        <span class="chev">${icon('right')}</span></a>`;
-    }).join('') || '<div class="card empty">Nessuna tappa. Aggiungi la prima!</div>'}
-    </div>
+        ${done ? stampHTML(t, s, { round: true, cls: 'mini', size: 58 }) : ''}
+        <span class="chev">${icon('right')}</span></a></li>`;
+    }).join('')}
+    </ol>
+    ${t.stages.length ? '' : '<div class="card empty">Nessuna tappa. Aggiungi la prima!</div>'}
     <button class="btn dash" data-a="addStage">${icon('plus')} Aggiungi tappa</button>
   </div>`;
 }
 
 function itemRow(t, s, di, it, isNext) {
-  const thumb = it.cover ? ph(it.cover, 'thumb', '', CATS[it.cat]?.i || 'img', 22) : `<span class="catt">${icon(CATS[it.cat]?.i || 'dots', 22)}</span>`;
-  const meta = [it.time ? (isNext ? it.time + ' · Prossima' : it.time) : (isNext ? 'Prossima' : ''), !it.time && !isNext ? CATS[it.cat]?.l : ''].filter(Boolean).join(' · ');
-  return `<div class="it${isNext ? ' next' : ''}${it.done ? ' done' : ''}">
+  const thumb = it.cover ? ph(it.cover, 'thumb', '', CATS[it.cat]?.i || 'img', 22) : `<span class="catt illw">${ill(it.cat || 'altro', 56)}</span>`;
+  const meta = isNext ? 'Prossima' : (CATS[it.cat]?.l || '');
+  return `<li class="${it.done ? 'done' : ''}${isNext ? ' next' : ''}"><span class="tl-time">${esc(it.time || '')}</span><span class="tl-dot"></span><div class="it${isNext ? ' next' : ''}${it.done ? ' done' : ''}">
     <a href="#/t/${t.id}/s/${s.id}/i/${it.id}">${thumb}<span class="grow"><span class="tm">${esc(meta)}</span><br><span class="nm">${esc(it.name)}</span></span></a>
-    <button class="check${it.done ? ' on' : ''}" data-a="toggleDone" data-id="${it.id}" aria-label="${it.done ? 'Fatto' : 'Da fare'}"><span>${it.done ? icon('check', 14, 3) : ''}</span></button></div>`;
+    <button class="check${it.done ? ' on' : ''}${POP === it.id ? ' pop' : ''}" data-a="toggleDone" data-id="${it.id}" aria-label="${it.done ? 'Fatto' : 'Da fare'}"><span>${it.done ? icon('check', 14, 3) : ''}</span></button></div></li>`;
 }
 function vStage(t, s, q) {
   const today = todayISO();
@@ -849,6 +1174,7 @@ function vStage(t, s, q) {
       <div class="tr"><button class="pill" data-a="stageCover">${icon('edit', 16)} Copertina</button></div>
       <div class="scrim"><span class="kicker" style="color:#CFE3D9">Tappa ${si + 1}${a ? ' · ' + esc(fmtRange(a, b)) : ''}</span>
         <h1 class="disp" style="font-size:30px;color:#fff">${esc(s.name)}</h1>${s.local && s.local !== s.name ? `<span class="s">${esc(s.local)}</span>` : ''}</div>
+      ${stageDone(s) ? stampHTML(t, s, { round: true, cls: ENTER ? 'in' : '', size: 78 }).replace('--sc:', '--sc:#fff;--x:') : ''}
     </div>
     <div class="days" role="tablist" aria-label="Giorni">
       ${s.days.map((d, i) => `<a role="tab" aria-selected="${i === idx}" class="day${i === idx ? ' on' : ''}${d.date === today ? ' today' : ''}" href="#/t/${t.id}/s/${s.id}?d=${i}"><small>${GG[dOf(d.date).getDay()]}</small><b>${esc(fmtD(d.date))}</b></a>`).join('')}
@@ -857,7 +1183,7 @@ function vStage(t, s, q) {
     ${day ? `
     <div class="row8"><div class="grow"><span class="kicker">Giorno ${daysBetween(t.start, day.date) + 1}${day.title ? ' · ' + esc(day.title) : ''}</span><div class="h-s" style="font-size:20px">${esc(fmtDL(day.date))}</div></div>
       <button class="iconbtn" data-a="editDay" aria-label="Modifica giorno">${icon('edit', 18)}</button></div>
-    <div class="stack8">${day.items.map((it) => itemRow(t, s, idx, it, it.id === nextId)).join('') || '<div class="card empty">Nessuna attività per questo giorno.</div>'}</div>
+    ${day.items.length ? `<ol class="tl">${day.items.map((it) => itemRow(t, s, idx, it, it.id === nextId)).join('')}</ol>` : '<div class="card empty">Nessuna attività per questo giorno.</div>'}
     <button class="btn dash" data-a="addItem">${icon('plus')} Aggiungi attività</button>
     <section class="stack8">
       <div class="secthead"><span class="kicker">Le mie foto · ${esc(fmtD(day.date))}</span><span class="small">${(day.photos || []).length} foto</span></div>
@@ -920,7 +1246,7 @@ function vSpese(t) {
     <h1 class="disp h-l">Spese</h1>
     <div class="money">
       <span style="font-size:13px;color:var(--deep-mute)">Totale speso</span>
-      <span class="big">${fmtEur(total)}</span>
+      <span class="big" data-count="${total}">${fmtEur(total)}</span>
       ${loc ? `<span style="font-size:15px;color:var(--deep-mute)">≈ ${esc(fmtLoc(t, total * t.currency.rate))}</span>` : ''}
       ${t.budget ? `<div class="bar"><i style="width:${pct}%"></i></div><span style="font-size:13px;color:var(--deep-mute)">${pct}% del budget di ${fmtEur(t.budget)} · restano ${fmtEur(Math.max(0, t.budget - total))}</span>` : ''}
       ${todayTot ? `<span style="font-size:13px;color:var(--deep-mute)">Oggi: ${fmtEur(todayTot)}</span>` : ''}
@@ -1255,6 +1581,20 @@ function openSettings() {
   </div></div>`);
 }
 
+
+function vFoto(t) {
+  const groups = tripPhotos(t);
+  const n = groups.reduce((a, g) => a + g.photos.length, 0);
+  return `<div class="page">
+    ${back('#/t/' + t.id, t.name)}
+    <div class="stack8" style="gap:4px"><h1 class="disp h-l">Foto</h1><p class="sub">${n} foto · ${groups.length} ${groups.length === 1 ? 'giorno' : 'giorni'}</p></div>
+    ${groups.map((g) => `<section class="stack8">
+      <div class="secthead"><span class="kicker">Giorno ${daysBetween(t.start, g.d.date) + 1} · ${esc(fmtDW(g.d.date))}</span><a class="small" href="#/t/${t.id}/s/${g.s.id}?d=${g.di}">${esc(g.s.name)} ${icon('right', 12)}</a></div>
+      <div class="gal">${g.photos.map((p, i) => `<button class="ph${i === 0 && g.photos.length >= 3 ? ' big' : ''}" data-blob="${esc(p.k)}" data-a="galPhoto" data-k="${esc(p.k)}" data-iid="${p.it ? p.it.id : ''}" aria-label="Apri foto${p.it ? ' di ' + esc(p.it.name) : ''}"><span class="phi">${icon('img', 18, 1.6)}</span></button>`).join('')}</div>
+    </section>`).join('') || `<div class="card empty">Ancora nessuna foto.<br>Aggiungile dalle attività o dai giorni dell'itinerario: compariranno qui, giorno per giorno.</div>`}
+  </div>`;
+}
+
 /* ============================================================ overlays */
 function showTaxi(t, name, addr, extra) {
   layer(`<div class="taxi" role="dialog" aria-label="Indirizzo per il tassista">
@@ -1382,7 +1722,7 @@ const A = {
     await gcAll();
     location.hash = '#/';
   },
-  async tripCover() { const t = R.t; const [k] = await addPhotos(false); if (!k) return; const old = t.cover; t.cover = k; await saveTrip(t); await gcBlob(old); rerender(); },
+  async tripCover() { const t = R.t; const [k] = await addPhotos(false); if (!k) return; const old = t.cover; t.cover = k; await autoColor(t); await saveTrip(t); await gcBlob(old); document.documentElement.style.setProperty('--t', t.color); rerender(); },
   async stageCover() { const t = R.t, s = R.s; const [k] = await addPhotos(false); if (!k) return; const old = s.cover; s.cover = k; await saveTrip(t); await gcBlob(old); rerender(); },
   async itemCover() {
     const t = R.t, it = R.ctx.it; const [k] = await addPhotos(false); if (!k) return;
@@ -1409,7 +1749,7 @@ const A = {
   async shareBlob(el) { const b = await getBlob(el.dataset.k); if (!b) return; const n = el.dataset.n || 'file'; const ext = b.type === 'application/pdf' ? '.pdf' : b.type.startsWith('image/') ? '.jpg' : b.type.startsWith('text/') ? '.txt' : ''; shareOrDownload(b, n.replace(/[\\/:*?"<>|]+/g, '-') + (n.toLowerCase().endsWith(ext) ? '' : ext)); },
   async toggleDone(el) {
     const t = R.t; const ctx = findItem(t, el.dataset.id); if (!ctx) return;
-    ctx.it.done = !ctx.it.done; await saveTrip(t); rerender();
+    ctx.it.done = !ctx.it.done; POP = ctx.it.done ? ctx.it.id : null; await saveTrip(t); rerender();
   },
   addStage() {
     const t = R.t;
@@ -1418,12 +1758,14 @@ const A = {
     openSheet({
       title: 'Nuova tappa', focus: true, required: ['name', 'from'],
       fields: [{ k: 'name', label: 'Nome della tappa', ph: 'Es. Rio de Janeiro' }, { k: 'local', label: 'Nome in lingua locale (facoltativo)' },
+        { k: 'coords', label: 'Posizione sulla mappa (facoltativa)', ph: 'Es. -22.90, -43.17' },
         { k: 'from', label: 'Dal', type: 'date', def: from }, { k: 'to', label: 'Al', type: 'date', def: from }, { k: 'notes', label: 'Info sulla tappa (spostamenti, hotel…)', type: 'textarea' }],
       saveLabel: 'Crea tappa',
       async onSave(v) {
         const to = v.to && v.to >= v.from ? v.to : v.from;
         const n = Math.min(60, daysBetween(v.from, to) + 1);
-        const s = { id: uid('st'), name: v.name, local: v.local, cover: null, notes: v.notes, days: [] };
+        const c = parseCoords(v.coords);
+        const s = { id: uid('st'), name: v.name, local: v.local, cover: null, notes: v.notes, days: [], lat: c ? c.lat : null, lng: c ? c.lng : null };
         for (let i = 0; i < n; i++) s.days.push({ date: addDays(v.from, i), title: '', items: [], photos: [] });
         t.stages.push(s); t.stages.sort((a, b) => (stageRange(a)[0] || '').localeCompare(stageRange(b)[0] || ''));
         await saveTrip(t); location.hash = `#/t/${t.id}/s/${s.id}`;
@@ -1434,9 +1776,10 @@ const A = {
     const t = R.t, s = R.s;
     openSheet({
       title: 'Modifica tappa', required: ['name'],
-      fields: [{ k: 'name', label: 'Nome della tappa' }, { k: 'local', label: 'Nome in lingua locale' }, { k: 'notes', label: 'Info sulla tappa', type: 'textarea' }],
-      values: s,
-      async onSave(v) { Object.assign(s, v); await saveTrip(t); rerender(); },
+      intro: 'Per la posizione: in Google Maps tieni premuto sul punto e copia i due numeri che compaiono.',
+      fields: [{ k: 'name', label: 'Nome della tappa' }, { k: 'local', label: 'Nome in lingua locale' }, { k: 'coords', label: 'Posizione sulla mappa (lat, lon)', ph: 'Es. 21.03, 105.85' }, { k: 'notes', label: 'Info sulla tappa', type: 'textarea' }],
+      values: { ...s, coords: s.lat != null && s.lat !== '' ? s.lat + ', ' + s.lng : '' },
+      async onSave(v) { const c = parseCoords(v.coords); s.name = v.name; s.local = v.local; s.notes = v.notes; s.lat = c ? c.lat : null; s.lng = c ? c.lng : null; await saveTrip(t); rerender(); },
       deleteLabel: 'Elimina tappa', confirmDelete: 'Eliminare la tappa «' + s.name + '» con tutti i giorni, le attività e le foto?',
       async onDelete() { t.stages = t.stages.filter((x) => x !== s); await saveTrip(t); await gcAll(); location.hash = `#/t/${t.id}/itin`; }
     });
@@ -1641,13 +1984,17 @@ const F = {
     const code = g('code'), dec = +g('decimals') || 0;
     const rate = code === 'EUR' ? 1 : parseAmt(g('rate'), 4);
     if (!(rate > 0)) { toast('Inserisci il tasso di cambio'); return; }
-    const color = (f.querySelector('[name=color]:checked') || {}).value || COLORS[0];
+    const colorSel = (f.querySelector('[name=color]:checked') || {}).value || 'auto';
+    const colorAuto = colorSel === 'auto';
+    const color = colorAuto ? ((R.t && R.t.color) || COLORS[1]) : colorSel;
     const budget = parseAmt(g('budget'), 2);
     const lang = g('lang');
     let t = R.t;
-    const base = { name, start, end, color, taxiPhrase: g('taxiPhrase'), taxiThanks: g('taxiThanks'), langName: LANGS[lang] ? LANGS[lang].n : (t && t.langName) || '', budget: budget > 0 ? budget : 0, travellers: g('travellers'), tz: g('tz') || homeTz() };
+    const base = { name, start, end, color, taxiPhrase: g('taxiPhrase'), taxiThanks: g('taxiThanks'), langName: LANGS[lang] ? LANGS[lang].n : (t && t.langName) || '', budget: budget > 0 ? budget : 0, travellers: g('travellers'), tz: g('tz') || homeTz(), mapCountry: g('mapCountry') };
+    base.colorAuto = colorAuto;
     if (t) {
       Object.assign(t, base);
+      await autoColor(t);
       const changed = t.currency.rate !== rate;
       t.currency = { ...t.currency, code, symbol: g('symbol') || code, name: CURR[code] ? CURR[code].n : code, decimals: dec, rate };
       if (changed) t.currency.updated = todayISO();
@@ -1732,6 +2079,15 @@ Object.assign(C, {
 });
 try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => applyTheme(S.global.theme || 'auto')); } catch (e) {}
 
+
+Object.assign(A, {
+  galPhoto(el) {
+    const t = R.t, iid = el.dataset.iid; const ctx = iid ? findItem(t, iid) : null;
+    openViewer({ title: ctx ? ctx.it.name : 'Foto', key: el.dataset.k, type: 'image/jpeg', dark: true,
+      actions: ctx ? [{ l: 'Vai all\'attività', ic: 'right', fn: () => { closeLayer(); location.hash = `#/t/${t.id}/s/${ctx.s.id}/i/${ctx.it.id}`; } }] : [] });
+  }
+});
+
 /* ============================================================ start */
 (async function start() {
   await DB.open();
@@ -1743,6 +2099,7 @@ try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () =
     try { const r = await fetch(window.DEMO_URL); await importData(await r.json(), true); } catch (e) { console.warn('demo', e); }
   }
   render(false);
+  setTimeout(() => { loadWorld().catch(() => {}); }, 1500);
   try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
   if ('serviceWorker' in navigator && location.protocol === 'https:' && !window.DEMO_URL) navigator.serviceWorker.register('sw.js').catch(() => {});
 })();
