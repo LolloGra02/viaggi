@@ -1,5 +1,5 @@
 // Service worker: keeps the whole app available offline.
-const CACHE = 'viaggi-v1';
+const CACHE = 'viaggi-v2';
 const FILES = [
   './',
   'index.html',
