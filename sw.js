@@ -1,5 +1,5 @@
 // Service worker: keeps the whole app available offline.
-const CACHE = 'viaggi-v4';
+const CACHE = 'viaggi-v5';
 const FILES = [
   './',
   'index.html',
@@ -10,8 +10,6 @@ const FILES = [
   'icons/icon-512.png',
   'vendor/pdf.min.js',
   'vendor/pdf.worker.min.js',
-  'vendor/topojson-client.min.js',
-  'vendor/countries-50m.json',
   'fonts/be-vietnam-pro-latin-400-normal.woff2',
   'fonts/be-vietnam-pro-latin-500-normal.woff2',
   'fonts/be-vietnam-pro-latin-700-normal.woff2',
