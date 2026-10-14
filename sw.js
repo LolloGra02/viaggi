@@ -1,5 +1,5 @@
 // Service worker: keeps the whole app available offline.
-const CACHE = 'viaggi-v6';
+const CACHE = 'viaggi-v7';
 const FILES = [
   './',
   'index.html',
@@ -25,7 +25,8 @@ const FILES = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));
+  // cache: 'reload' skips the browser's HTTP cache, so a new version never stores old files
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES.map((f) => new Request(f, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (e) => {
@@ -42,7 +43,7 @@ self.addEventListener('fetch', (e) => {
   // App page: network first (so updates arrive when online), cache as fallback.
   if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(req)
+      fetch(req, { cache: 'no-cache' })
         .then((res) => {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put('index.html', copy));

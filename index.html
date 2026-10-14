@@ -372,6 +372,7 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 const uid = (p) => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const clone = (o) => JSON.parse(JSON.stringify(o));
 const TODAY_OVERRIDE = new URLSearchParams(location.search).get('oggi');
+const APP_VERSION = '7';
 
 const P = {
   left: '<path d="m15 6-6 6 6 6"/>', right: '<path d="m9 6 6 6-6 6"/>', check: '<path d="M20 6 9 17l-5-5"/>',
@@ -765,7 +766,7 @@ function after() {
   });
   const on = $('.days .day.on'); if (on) on.parentElement.scrollLeft = on.offsetLeft - 20;
   const st = $('#storage');
-  if (st && navigator.storage && navigator.storage.estimate) navigator.storage.estimate().then((e) => { st.textContent = 'Dati salvati solo su questo dispositivo · ' + nf((e.usage || 0) / 1048576, 1) + ' MB usati'; }).catch(() => {});
+  if (st && navigator.storage && navigator.storage.estimate) navigator.storage.estimate().then((e) => { st.textContent = 'Dati salvati solo su questo dispositivo · ' + nf((e.usage || 0) / 1048576, 1) + ' MB usati · versione ' + APP_VERSION; }).catch(() => {});
   if (R.p && R.p[2] === 'cambio') cxUpdate();
   const tm = $('#tripmap'); if (tm && R.t) drawMap(tm, R.t);
   const big = $('.money .big[data-count]');
@@ -1025,7 +1026,7 @@ function vHome() {
     ${(() => { const st = ts.flatMap((t) => t.stages.filter(stageDone).map((s) => ({ t, s }))); return st.length ? `<section class="stack8"><div class="secthead"><span class="kicker">I miei timbri</span><span class="small">${st.length} ${st.length === 1 ? 'tappa' : 'tappe'}</span></div><div class="stamps">${st.map(({ t, s }) => `<a href="#/t/${t.id}/s/${s.id}" style="padding:4px">${stampHTML(t, s, { size: 100 })}</a>`).join('')}</div></section>` : ''; })()}
     <a class="btn dash" href="#/new">${icon('plus')} Nuovo viaggio</a>
     <div class="row2"><button class="btn sec sm" data-a="import">${icon('download', 18)} Importa</button><button class="btn sec sm" data-a="backup">${icon('upload', 18)} Backup</button></div>
-    <p class="foot" id="storage"></p>
+    <p class="foot" id="storage">Versione ${APP_VERSION}</p>
   </div>`;
 }
 
@@ -1588,6 +1589,7 @@ function openSettings() {
     <div class="sheet-h"><h2 class="disp h-m">Impostazioni</h2><button type="button" class="iconbtn" data-a="closeLayer" aria-label="Chiudi">${icon('x')}</button></div>
     <div class="fld"><span>Aspetto</span><div class="themepick" role="radiogroup" aria-label="Aspetto">${opt('auto', 'Automatico', 'auto')}${opt('light', 'Chiaro', 'sun')}${opt('dark', 'Scuro', 'moon')}</div></div>
     <p class="small" style="margin:0">Automatico segue l'impostazione dell'iPhone (chiaro di giorno, scuro di sera se l'hai attivato).</p>
+    <p class="small" style="margin:0;text-align:center">Versione dell'app: <b>${APP_VERSION}</b></p>
     <label class="fld"><span>Il mio fuso orario di casa</span><select class="inp" data-ch="homeTz">${tzOptions(homeTz()).map((o) => `<option value="${esc(o.v)}"${o.v === homeTz() ? ' selected' : ''}>${esc(o.l)}</option>`).join('')}</select></label>
   </div></div>`);
 }
@@ -2112,7 +2114,12 @@ Object.assign(A, {
   render(false);
   setTimeout(() => { loadWorld().catch(() => {}); }, 1500);
   try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
-  if ('serviceWorker' in navigator && location.protocol === 'https:' && !window.DEMO_URL) navigator.serviceWorker.register('sw.js').catch(() => {});
+  if ('serviceWorker' in navigator && location.protocol === 'https:' && !window.DEMO_URL) {
+    const hadController = !!navigator.serviceWorker.controller;
+    let reloading = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController && !reloading) { reloading = true; location.reload(); } });
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then((r) => { try { r.update(); } catch (e) {} }).catch(() => {});
+  }
 })();
 </script>
 </body>
