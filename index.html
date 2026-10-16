@@ -357,6 +357,139 @@ a.card:active,a.tile:active,button.card:active{transform:scale(.98)}
 .catt.illw{background:none;width:56px;height:56px}
 .tile .illw,.card .illw{width:46px;height:46px}
 @media (prefers-reduced-motion: reduce){.mapcard .now-ring{animation:none}}
+
+/* ---- v8: section headers, tickets, lodgings, banknotes, money, docs, lists */
+.phead{position:relative;display:flex;align-items:center;gap:14px;background:var(--ts);border-radius:22px;padding:18px 16px 18px 20px;overflow:hidden;margin-top:-4px}
+.phead::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1.5px 1.5px,var(--tt) 1.2px,transparent 1.6px);background-size:16px 16px;opacity:.10;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 35%,#000);mask-image:linear-gradient(90deg,transparent 35%,#000)}
+.phead>*{position:relative}
+.phead .sub{font-size:14px;margin-top:4px}
+.phead .ill{transform:rotate(-7deg);filter:drop-shadow(0 4px 8px var(--shadow))}
+.phead.sos{background:var(--rs)}
+.phead.sos::before{background-image:radial-gradient(circle at 1.5px 1.5px,var(--red) 1.2px,transparent 1.6px)}
+/* tickets */
+.ticket{position:relative;display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;color:var(--ink)}
+a.ticket{transition:transform .12s ease}
+a.ticket:active{transform:scale(.98)}
+.ticket.next{border:2px solid var(--tt)}
+.ticket.past{opacity:.6}
+.tk-top{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--t);color:#fff;padding:9px 14px;font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+.tk-main{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:6px;padding:14px 16px 12px}
+.tk-pt{min-width:0}
+.tk-pt b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:34px;line-height:1;letter-spacing:-.5px}
+.tk-pt.long b{font-size:20px;line-height:1.12;letter-spacing:-.2px;overflow-wrap:anywhere}
+.tk-pt em{display:block;font-style:normal;font-weight:700;font-size:16px;margin-top:5px;font-variant-numeric:tabular-nums;color:var(--tt)}
+.tk-pt em sup{font-size:11px;margin-left:2px;color:var(--c)}
+.tk-pt span{display:block;font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tk-pt.r{text-align:right}
+.tk-mid{display:flex;align-items:center;gap:4px;color:var(--tt)}
+.tk-mid i{width:16px;border-top:2px dotted var(--dash)}
+.tk-cut{position:relative;border-top:2px dashed var(--line2);margin:0 16px}
+.tk-cut::before,.tk-cut::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.tk-cut::before{left:-28px}
+.tk-cut::after{right:-28px}
+.tk-foot{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,.9fr);gap:10px;padding:11px 16px 14px}
+.tk-foot span{display:block;font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.tk-foot b{display:block;font-size:14px;line-height:1.25;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.ticket.big .tk-pt b{font-size:44px}
+.ticket.big .tk-pt.long b{font-size:24px}
+.ticket.big .tk-main{padding:20px 18px 16px}
+.ticket.big .tk-foot{padding:14px 18px 18px}
+.ticket.big .tk-foot b{font-size:16px}
+/* lodgings */
+a.card.lodge{display:grid;grid-template-columns:76px minmax(0,1fr);gap:13px;align-items:center;padding:10px 14px 10px 10px}
+.lthumb{width:76px;height:76px;border-radius:14px;flex-shrink:0;display:block}
+.lthumb.big{width:84px;height:84px;border-radius:18px}
+.lill{overflow:hidden}
+.lill .ill{width:100%;height:100%}
+.lphoto{position:relative;border:none;background:none;padding:0;flex-shrink:0}
+.lcam{position:absolute;right:-4px;bottom:-4px;width:28px;height:28px;border-radius:50%;background:var(--card);color:var(--tt);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px var(--shadow)}
+.st{display:inline-flex;align-items:center;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap;background:var(--gs);color:var(--g)}
+.st.todo,.st.verify{background:var(--cs);color:var(--ci)}
+.stay{font-size:13px;color:var(--muted)}
+.lodge .secthead{align-items:flex-start}
+.lodge .secthead .kicker{min-width:0}
+.st,.lodge .tag{flex-shrink:0}
+.ndots{display:inline-flex;align-items:center;gap:3px;flex-wrap:wrap}
+.ndots i{width:9px;height:9px;border-radius:50%;background:var(--tt);opacity:.85}
+.ndots span{font-size:12px;font-weight:700;color:var(--tt);margin-left:4px}
+.staycard{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+.staycard span{display:block;font-size:12px;color:var(--muted)}
+.staycard b{font-size:15px}
+.staycard .r{text-align:right}
+.staycard .mid{display:flex;flex-direction:column;align-items:center;gap:4px}
+.staycard .ndots{display:inline-flex}
+.staycard .mid small{font-size:12px;font-weight:700;color:var(--tt)}
+.nights{display:grid;gap:3px}
+.nt-c{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}
+.nt-c small{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nt-c.today small{color:var(--c);font-weight:700}
+.nt{width:100%;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-style:normal}
+.nt.ok{background:var(--nc)}
+.nt.todo{background:var(--nc);background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.55) 0 3px,transparent 3px 6px);color:var(--ci)}
+.nt.move{background:var(--seg);color:var(--muted);border:1.5px dashed var(--dash)}
+.nt.none,.nt.dup{background:var(--cs);color:var(--c);border:1.5px solid var(--c)}
+.nlegend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.nlegend span{display:inline-flex;align-items:center;gap:6px}
+.nlegend .nt{width:14px;height:14px;border-radius:4px}
+/* banknotes */
+.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bnote{position:relative;overflow:hidden;min-height:86px;border:none;border-radius:12px;background-color:var(--nc,var(--t));background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 2px,transparent 2px 7px);color:#fff;text-align:left;padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;box-shadow:0 2px 6px var(--shadow);transition:transform .12s ease}
+.bnote:active{transform:scale(.97) rotate(-1deg)}
+.bnote::before{content:"";position:absolute;inset:5px;border:1px solid rgba(255,255,255,.4);border-radius:8px;pointer-events:none}
+.bnote::after{content:"";position:absolute;right:-20px;top:50%;width:92px;height:92px;margin-top:-46px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.30) 0,rgba(255,255,255,.10) 55%,transparent 57%);pointer-events:none}
+.bnote .nc{position:absolute;right:12px;top:9px;font-size:10px;font-weight:700;opacity:.8;letter-spacing:.3px}
+.bnote .nv{position:relative;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:24px;line-height:1;z-index:1;margin-top:10px}
+.bnote .nv small{font-size:14px;margin-left:3px;opacity:.85}
+.bnote .ne{position:relative;z-index:1;align-self:flex-start;font-size:13px;font-weight:700;background:rgba(0,0,0,.2);padding:3px 9px;border-radius:999px}
+.bnote.plain{background-color:var(--t)}
+/* money */
+.msplit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;border-top:1px solid var(--deep-bar);padding-top:10px;margin-top:2px}
+.msplit span{display:block;font-size:12px;color:var(--deep-mute)}
+.msplit b{font-size:16px}
+.donutcard{display:flex;align-items:center;gap:16px}
+.dn{position:relative;flex-shrink:0;width:132px;height:132px}
+.dn svg{display:block}
+.dn-c{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.legend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;flex:1;min-width:0}
+.legend li{display:flex;align-items:center;gap:8px;font-size:14px}
+.legend li i{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.legend li small{display:block;font-size:12px;color:var(--muted)}
+.legend li b{font-size:14px;font-variant-numeric:tabular-nums}
+.exr{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:none;border-bottom:1px solid var(--sep);padding:10px 14px 10px 10px;min-height:60px}
+.exr:last-child{border-bottom:none}
+.exr .grow b{display:block;font-size:15px;line-height:1.25}
+.exr .r{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;font-variant-numeric:tabular-nums}
+.exr .r b{font-size:15px}
+.fab{position:fixed;right:max(20px,calc((100vw - 520px) / 2 + 20px));bottom:calc(var(--safe-b) + 22px);width:62px;height:62px;border-radius:50%;border:none;background:var(--t);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.28);z-index:20;transition:transform .12s ease}
+.fab:active{transform:scale(.92)}
+.ichips span{gap:6px;padding-left:5px}
+.ichips .ill{width:24px;height:24px}
+/* checklists */
+.lghead{display:flex;align-items:center;gap:8px}
+.lghead.full .kicker{color:var(--tt)}
+.ring{flex-shrink:0;display:block}
+/* documents */
+.docrow{padding:10px 14px 10px 10px}
+.dthumb{position:relative;width:52px;height:66px;border-radius:8px;flex-shrink:0;background:#fff center top/cover no-repeat;border:1px solid var(--line);box-shadow:0 1px 4px var(--shadow);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.dthumb .doctype{width:auto;height:auto;padding:4px 6px;border-radius:6px}
+.dthumb.has-img .doctype,.dthumb.has-txt .doctype{position:absolute;left:3px;bottom:3px;font-size:8px;padding:2px 4px;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.dt-txt{position:absolute;inset:0;padding:5px;font-size:5px;line-height:1.35;color:#3A4A42;white-space:pre-wrap;overflow:hidden;text-align:left;font-weight:400}
+.docrow .small svg{vertical-align:-1px;color:var(--g)}
+/* attraction facts as pills */
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pillf{display:inline-flex;align-items:flex-start;gap:7px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 12px;font-size:14px;font-weight:700;line-height:1.3;max-width:100%}
+.pillf svg{color:var(--tt);flex-shrink:0;margin-top:1px}
+/* countdown */
+.cdcard{display:flex;align-items:center;gap:16px;background:var(--t);color:var(--on);border-radius:20px;padding:14px 18px}
+.cdn{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:58px;line-height:.9;letter-spacing:-2px;min-width:64px;text-align:center;font-variant-numeric:tabular-nums}
+.cdn small{display:block;font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-family:'Be Vietnam Pro',sans-serif;margin-top:6px;opacity:.85}
+.tag.cd b{font-size:15px;margin-right:2px}
+/* stage completed */
+.stampov{position:fixed;inset:0;z-index:85;background:rgba(8,14,11,.78);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center;color:#fff;animation:fade .2s ease-out both}
+.stampov .paper{background:#FBF6EA;border-radius:28px;padding:34px;box-shadow:0 10px 40px rgba(0,0,0,.35);margin-bottom:8px;--ink1:#B23A2E;--ink2:#2D4F8E;--ink3:#1D6B4F;--ink4:#7A3E8E}
+.stampov>b{font-family:'Bricolage Grotesque',sans-serif;font-size:28px}
+.stampov>span{font-size:15px;opacity:.9;max-width:300px}
+@media (prefers-reduced-motion: reduce){.stampov{animation:none}}
 </style>
 </head>
 <body>
@@ -372,7 +505,7 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 const uid = (p) => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const clone = (o) => JSON.parse(JSON.stringify(o));
 const TODAY_OVERRIDE = new URLSearchParams(location.search).get('oggi');
-const APP_VERSION = '7';
+const APP_VERSION = '8';
 
 const P = {
   left: '<path d="m15 6-6 6 6 6"/>', right: '<path d="m9 6 6 6-6 6"/>', check: '<path d="M20 6 9 17l-5-5"/>',
@@ -418,6 +551,11 @@ const P = {
   flag: '<path d="M4 22V4M4 4h13l-2 4 2 4H4"/>',
   chat: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'
 };
+Object.assign(P, {
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  ticket: '<path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M15 7v1.5M15 11v2M15 15.5V17"/>',
+  hourglass: '<path d="M6 3h12M6 21h12M7 3c0 4.5 5 6 5 9 0-3 5-4.5 5-9M7 21c0-4.5 5-6 5-9 0 3 5 4.5 5 9"/>'
+});
 const icon = (n, s = 20, w = 2) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n] || ''}</svg>`;
 
 const CATS = {
@@ -768,6 +906,7 @@ function after() {
   const st = $('#storage');
   if (st && navigator.storage && navigator.storage.estimate) navigator.storage.estimate().then((e) => { st.textContent = 'Dati salvati solo su questo dispositivo · ' + nf((e.usage || 0) / 1048576, 1) + ' MB usati · versione ' + APP_VERSION; }).catch(() => {});
   if (R.p && R.p[2] === 'cambio') cxUpdate();
+  if (R.p && R.p[2] === 'docs') queueThumbs($('#app'));
   const tm = $('#tripmap'); if (tm && R.t) drawMap(tm, R.t);
   const big = $('.money .big[data-count]');
   if (big && ENTER && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -860,6 +999,11 @@ const ILL = {
   swap: ['#DDF0E4', `<rect x="6" y="13" width="27" height="17" rx="2.5" fill="#8FC79F"/><circle cx="19.5" cy="21.5" r="4.2" fill="#5FA67D"/><path d="M9.5 17h3M26.5 26h3" stroke="#2F7D57"/><circle cx="33" cy="31" r="8.5" fill="#F2B33D"/><circle cx="33" cy="31" r="5.4" fill="none" stroke="#C8901F"/><path d="M14 8.5h12l-2.5-2.5M34 40.5H22l2.5 2.5" stroke="#2F7D57"/>`],
   list: ['#FFF1CC', `<rect x="12" y="7" width="25" height="33" rx="3" fill="#F7F2E8"/><path d="M12 12h-2.5M12 18h-2.5M12 24h-2.5M12 30h-2.5M12 36h-2.5" stroke-width="2"/><path d="M18 15h13M18 21h9" stroke="#B9A894"/><path d="m18 29 3.2 3.2L30 24" stroke="#2F7D57" stroke-width="2.6"/>`]
 };
+Object.assign(ILL, {
+  shop: ['#FCE3EC', `<path d="M11 18h26l-2.2 21H13.2z" fill="#E05A47"/><path d="M18 21v-5.5a6 6 0 0 1 12 0V21"/><circle cx="18" cy="21.5" r="1.2" fill="#FCE3EC"/><circle cx="30" cy="21.5" r="1.2" fill="#FCE3EC"/><path d="M17 32h14" stroke="#F7E3B5" stroke-width="2"/>`],
+  suitcase: ['#DDF0E4', `<path d="M19 15v-4h10v4"/><rect x="9" y="15" width="30" height="23" rx="4" fill="#2F7D57"/><path d="M17 15v23M31 15v23" stroke="#F2B33D" stroke-width="2.6"/><path d="M14 38v3M34 38v3"/><rect x="21" y="23" width="6" height="7" rx="1.5" fill="#F7F2E8"/>`],
+  sos: ['#FBE7E5', `<circle cx="24" cy="24" r="14.5" fill="#D2492F"/><circle cx="24" cy="24" r="10.75" fill="none" stroke="#fff" stroke-width="7.5" stroke-dasharray="8.44 8.44" stroke-dashoffset="4.22"/><circle cx="24" cy="24" r="7" fill="#FBE7E5"/><path d="M24 20.5v7M20.5 24h7" stroke="#D2492F" stroke-width="2.4"/>`]
+});
 function ill(name, size = 46) {
   const d = ILL[name] || ILL.altro;
   return `<svg class="ill" width="${size}" height="${size}" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="${d[0]}"/><g fill="none" stroke="${ILL_O}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${d[1]}</g></svg>`;
@@ -942,6 +1086,15 @@ async function drawMap(el, t) {
     const now = g.stages.some((s) => { const [a, b] = stageRange(s); return a && a <= today && today <= b; });
     return { ...g, x, y, done, now };
   });
+  const pinR = (p) => (p.idx.map((i) => i + 1).join('·').length > 2 ? 14 : 12);
+  for (let k = 0; k < 8; k++) for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+    const a = pts[i], b = pts[j], need = pinR(a) + pinR(b) + 5;
+    let dx = b.x - a.x, dy = b.y - a.y, dd = Math.hypot(dx, dy);
+    if (dd >= need) continue;
+    if (dd < 0.01) { dx = 0; dy = 1; dd = 1; }
+    const push = (need - dd) / 2;
+    a.x -= (dx / dd) * push; a.y -= (dy / dd) * push; b.x += (dx / dd) * push; b.y += (dy / dd) * push;
+  }
   // route: curved dashed segments in visiting order
   const order = []; t.stages.forEach((s) => { const g = pts.find((p) => p.stages.includes(s)); if (g && order[order.length - 1] !== g) order.push(g); });
   let route = '';
@@ -999,7 +1152,7 @@ function tripHero(t) {
   const nd = daysBetween(t.start, t.end) + 1;
   return `<a class="trip-hero" href="#/t/${t.id}" style="--t:${esc(t.color)}">
     ${ph(t.cover, 'fill', '', 'img', 34)}
-    <div class="th-top"><span class="tag dark">${esc(st.k)}</span><span class="tag">${esc(st.l)}</span></div>
+    <div class="th-top"><span class="tag dark">${esc(st.k)}</span>${st.st === 'pre' ? (() => { const n = daysBetween(todayISO(), t.start); return `<span class="tag cd"><b>${n}</b> ${n === 1 ? 'giorno' : 'giorni'}</span>`; })() : `<span class="tag">${esc(st.l)}</span>`}</div>
     <div class="scrim"><span class="disp" style="font-size:40px;line-height:1">${esc(t.name)}</span>
       <span class="s">${esc(fmtRange(t.start, t.end))} ${dOf(t.end).getFullYear()}</span>
       <span class="s">${t.stages.length} tappe · ${nd} giorni · ${t.docs.length} documenti</span></div></a>`;
@@ -1095,6 +1248,10 @@ function todayCard(t) {
   } else {
     kick = 'Viaggio concluso'; title = countPhotos(t) + ' foto'; line = fmtRange(t.start, t.end) + ' ' + dOf(t.end).getFullYear();
   }
+  if (st.st === 'pre' && daysBetween(today, t.start) >= 1) {
+    const n = daysBetween(today, t.start);
+    return `<a href="${href}" class="cdcard"><span class="cdn">${n}<small>${n === 1 ? 'giorno' : 'giorni'}</small></span><span class="grow stack8" style="gap:3px"><span class="kicker" style="color:rgba(255,255,255,.82)">Alla partenza</span><span class="disp" style="font-size:22px">${esc(title)}</span><span style="font-size:14px;color:rgba(255,255,255,.88)">${esc(line)}</span></span></a>`;
+  }
   return `<a href="${href}" style="background:var(--t);color:var(--on);border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:4px">
     <span class="kicker" style="color:rgba(255,255,255,.82)">${esc(kick)}</span>
     <span class="disp" style="font-size:22px">${esc(title)}</span>
@@ -1137,8 +1294,7 @@ function vItin(t) {
   const nDone = t.stages.filter(stageDone).length;
   const pct = t.stages.length ? Math.round((nDone / t.stages.length) * 100) : 0;
   return `<div class="page">
-    ${back('#/t/' + t.id, t.name)}
-    <div class="stack8" style="gap:4px"><h1 class="disp h-l">Itinerario</h1><p class="sub">${t.stages.length} tappe · ${nd} giorni · ${countPhotos(t)} foto</p></div>
+    ${pageHead(t, 'Itinerario', `${t.stages.length} tappe · ${nd} giorni · ${countPhotos(t)} foto`, 'map')}
     ${t.stages.length || t.mapCountry ? `<div class="mapcard" id="tripmap"><div class="maphint"><div class="spin" style="margin:0"></div></div></div>` : ''}
     ${t.stages.length ? `<div class="progress"><div class="secthead"><span class="small"><b style="color:var(--ink)">${nDone} di ${t.stages.length}</b> tappe completate</span><span class="small">${pct}%</span></div><div class="bar light"><i style="width:${Math.max(pct, 2)}%"></i></div></div>` : ''}
     <ol class="route">
@@ -1225,7 +1381,7 @@ function vItem(t, ctx) {
       <h1 class="disp h-m" style="font-size:27px">${esc(it.name)}</h1>
       ${it.local ? `<span class="sub">${esc(it.local)}</span>` : ''}
     </div>
-    ${facts.length ? `<div class="facts">${facts.map((f) => `<div class="fact"><span>${f[0]}</span><b>${esc(f[1])}</b></div>`).join('')}</div>` : ''}
+    ${facts.length ? `<div class="pills">${facts.map((f) => `<span class="pillf" title="${f[0]}">${icon({ Orari: 'clock', Prezzo: 'ticket', Durata: 'hourglass' }[f[0]], 16)}<span><span class="sr">${f[0]}: </span>${esc(f[1])}</span></span>`).join('')}</div>` : ''}
     ${it.info ? `<div class="card"><div class="kicker" style="margin-bottom:6px">Info e consigli</div><div class="pre" style="font-size:15px;line-height:1.5">${esc(it.info)}</div></div>` : ''}
     ${it.addressLocal || it.address ? `<div class="card stack8"><span class="kicker">Indirizzo</span>
       ${it.addressLocal ? `<b style="font-size:16px">${esc(it.addressLocal)}</b>` : ''}${it.address ? `<span class="small" style="font-size:14px">${esc(it.address)}</span>` : ''}</div>` : ''}
@@ -1240,72 +1396,6 @@ function vItem(t, ctx) {
   </div>`;
 }
 
-let EXP_CUR = 'LOC';
-function vSpese(t) {
-  const total = t.expenses.reduce((a, e) => a + toEur(t, e), 0);
-  const today = todayISO();
-  const todayTot = t.expenses.filter((e) => e.date === today).reduce((a, e) => a + toEur(t, e), 0);
-  const pct = t.budget ? Math.min(100, Math.round((total / t.budget) * 100)) : 0;
-  const byCat = {};
-  t.expenses.forEach((e) => { byCat[e.cat] = (byCat[e.cat] || 0) + toEur(t, e); });
-  const cats = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
-  const max = cats.length ? cats[0][1] : 1;
-  const groups = {};
-  [...t.expenses].sort((a, b) => b.date.localeCompare(a.date)).forEach((e) => { (groups[e.date] = groups[e.date] || []).push(e); });
-  const loc = t.currency.code !== 'EUR';
-  return `<div class="page">
-    ${back('#/t/' + t.id, t.name)}
-    <h1 class="disp h-l">Spese</h1>
-    <div class="money">
-      <span style="font-size:13px;color:var(--deep-mute)">Totale speso</span>
-      <span class="big" data-count="${total}">${fmtEur(total)}</span>
-      ${loc ? `<span style="font-size:15px;color:var(--deep-mute)">≈ ${esc(fmtLoc(t, total * t.currency.rate))}</span>` : ''}
-      ${t.budget ? `<div class="bar"><i style="width:${pct}%"></i></div><span style="font-size:13px;color:var(--deep-mute)">${pct}% del budget di ${fmtEur(t.budget)} · restano ${fmtEur(Math.max(0, t.budget - total))}</span>` : ''}
-      ${todayTot ? `<span style="font-size:13px;color:var(--deep-mute)">Oggi: ${fmtEur(todayTot)}</span>` : ''}
-    </div>
-    <form class="card stack10" data-f="addExp" novalidate>
-      <b>Nuova spesa</b>
-      <div class="row8" style="align-items:flex-end">
-        <label class="fld grow"><span>Importo</span><input class="inp" name="amount" inputmode="decimal" autocomplete="off" placeholder="0" data-in="expPrev" style="font-size:18px;font-weight:700"></label>
-        ${loc ? `<div class="toggle" role="radiogroup" aria-label="Valuta"><label><input type="radio" name="cur" value="LOC"${EXP_CUR === 'LOC' ? ' checked' : ''} data-ch="expCur"><span>${esc(t.currency.symbol)}</span></label><label><input type="radio" name="cur" value="EUR"${EXP_CUR === 'EUR' ? ' checked' : ''} data-ch="expCur"><span>€</span></label></div>` : '<input type="hidden" name="cur" value="EUR">'}
-      </div>
-      <span class="small" id="expPrev">&nbsp;</span>
-      <label class="fld"><span>Descrizione</span><input class="inp" name="desc" autocomplete="off" placeholder="Es. Phở a colazione"></label>
-      <div class="chips" role="radiogroup" aria-label="Categoria">${EXCATS.filter((c) => c !== 'Prima di partire').map((c, i) => `<label><input type="radio" name="cat" value="${c}"${i === 0 ? ' checked' : ''}><span>${c}</span></label>`).join('')}</div>
-      <label class="fld"><span>Data</span><input class="inp" type="date" name="date" value="${today}"></label>
-      <button class="btn" type="submit">Salva spesa</button>
-    </form>
-    ${cats.length ? `<section class="card stack10"><b>Per categoria</b>${cats.map(([c, v]) => `<div class="stack8" style="gap:4px"><div class="secthead"><span style="font-size:14px">${esc(c)}</span><b style="font-size:14px">${fmtEur(v)}</b></div><div class="bar light"><i style="width:${Math.max(3, Math.round((v / max) * 100))}%"></i></div></div>`).join('')}</section>` : ''}
-    ${Object.keys(groups).map((dt) => `<section class="stack8"><span class="kicker">${esc(fmtDW(dt))}${dt === today ? ' · oggi' : ''}</span>${groups[dt].map((e) => `<button class="exrow" data-a="editExp" data-id="${e.id}"><span class="grow"><b style="font-size:15px">${esc(e.desc || e.cat)}</b><br><span class="small">${esc(e.cat)}</span></span><span class="r"><b style="font-size:15px">${e.cur === 'EUR' ? fmtEur(e.amount) : esc(fmtLoc(t, e.amount))}</b>${loc ? `<span class="small">≈ ${e.cur === 'EUR' ? esc(fmtLoc(t, e.amount * t.currency.rate)) : fmtEur(toEur(t, e))}</span>` : ''}</span></button>`).join('')}</section>`).join('') || '<div class="card empty">Nessuna spesa registrata.</div>'}
-  </div>`;
-}
-
-function vPren(t, q) {
-  const tab = q.tab === 't' ? 't' : 'a';
-  const today = todayISO();
-  const lod = [...t.lodgings].sort((a, b) => (a.checkin || '').localeCompare(b.checkin || ''));
-  const trs = [...t.transports].sort((a, b) => (a.depart || '').localeCompare(b.depart || ''));
-  return `<div class="page">
-    ${back('#/t/' + t.id, t.name)}
-    <h1 class="disp h-l">Prenotazioni</h1>
-    <div class="seg" role="tablist"><a role="tab" class="${tab === 'a' ? 'on' : ''}" href="#/t/${t.id}/pren?tab=a">Alloggi (${t.lodgings.length})</a><a role="tab" class="${tab === 't' ? 'on' : ''}" href="#/t/${t.id}/pren?tab=t">Trasporti (${t.transports.length})</a></div>
-    ${tab === 'a' ? `<div class="stack10">${lod.map((l) => {
-      const now = l.checkin && l.checkin <= today && today < l.checkout;
-      const n = l.checkin && l.checkout ? daysBetween(l.checkin, l.checkout) : 0;
-      return `<a class="card stack8${now ? ' hl' : ''}" href="#/t/${t.id}/l/${l.id}">
-        <div class="secthead"><span class="kicker" style="color:var(--tt)">${esc(l.city)}</span>${now ? '<span class="tag solid">Attuale</span>' : ''}</div>
-        <b style="font-size:17px${l.name ? '' : ';color:var(--faint)'}">${esc(l.name || 'Nome hotel da inserire')}</b>
-        ${l.addressLocal ? `<span class="small" style="font-size:14px">${esc(l.addressLocal)}</span>` : ''}
-        <span class="small" style="border-top:1px solid var(--line);padding-top:8px">${l.checkin ? 'Check-in <b style="color:var(--ink)">' + esc(fmtDW(l.checkin)) + '</b> · ' : ''}${l.checkout ? 'Check-out <b style="color:var(--ink)">' + esc(fmtDW(l.checkout)) + '</b>' : ''}${n ? ' · ' + n + (n === 1 ? ' notte' : ' notti') : ''}</span></a>`;
-    }).join('') || '<div class="card empty">Nessun alloggio.</div>'}</div>
-    <button class="btn dash" data-a="addLodging">${icon('plus')} Aggiungi alloggio</button>`
-    : `<div class="stack10">${trs.map((x) => `<a class="card row" href="#/t/${t.id}/tr/${x.id}">
-        <span class="icotile">${icon(TRK[x.kind]?.i || 'bus', 22)}</span>
-        <span class="grow"><b style="font-size:16px">${esc(x.from)} → ${esc(x.to)}</b><br><span class="small">${esc(fmtDT(x.depart))}${x.arrive ? ' → ' + esc((x.arrive || '').split('T')[1] || '') : ''}</span><br><span class="small">${esc([x.operator, x.code].filter(Boolean).join(' · '))}</span></span>
-        <span class="chev">${icon('right')}</span></a>`).join('') || '<div class="card empty">Nessun trasporto.</div>'}</div>
-    <button class="btn dash" data-a="addTransport">${icon('plus')} Aggiungi trasporto</button>`}
-  </div>`;
-}
 function taxiBlock(t, name, addr, big) {
   return `<div class="${big ? '' : 'taxicard'}">
     <span class="tphrase">${esc(t.taxiPhrase || 'Per favore, mi porti a questo indirizzo:')}</span>
@@ -1313,22 +1403,149 @@ function taxiBlock(t, name, addr, big) {
     ${addr ? `<span class="taddr">${esc(addr)}</span>` : ''}
     ${t.taxiThanks ? `<span class="tphrase">${esc(t.taxiThanks)}</span>` : ''}</div>`;
 }
+function cxUpdate() {
+  const t = R.t; if (!t) return;
+  const out = $('#cxout'); if (!out) return;
+  const v = CX.v || 0;
+  out.textContent = CX.dir === 'L2E' ? fmtEur(v / (t.currency.rate || 1)) : fmtLoc(t, v * (t.currency.rate || 1));
+}
+
+
+/* ============================================================ v8 helpers */
+const EXC = { Cibo: ['cibo', '#E07A3F'], Trasporti: ['trasporto', '#3C78C2'], Alloggio: ['bed', '#7A5BB0'], Attrazioni: ['visita', '#2F8A5F'], Shopping: ['shop', '#C9487A'], 'Prima di partire': ['suitcase', '#B08A3E'], Altro: ['altro', '#8A9590'] };
+const excOf = (c) => EXC[c] || EXC.Altro;
+const LCOL = ['#2F8A5F', '#3C78C2', '#B08A3E', '#7A5BB0', '#C9487A', '#0F7C86', '#B5562E'];
+function pageHead(t, title, sub, il, cls) {
+  return `${back('#/t/' + t.id, t.name)}
+    <header class="phead${cls ? ' ' + cls : ''}"><div class="grow"><h1 class="disp h-l">${esc(title)}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div>${ill(il, 64)}</header>`;
+}
+function ring(done, total, size = 26) {
+  const h = size / 2, r = (size - 5) / 2, c = 2 * Math.PI * r, p = total ? done / total : 0;
+  return `<svg class="ring" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true"><circle cx="${h}" cy="${h}" r="${r}" fill="none" stroke="var(--line)" stroke-width="4"/>${p > 0 ? `<circle cx="${h}" cy="${h}" r="${r}" fill="none" stroke="var(--tt)" stroke-width="4" stroke-linecap="round" stroke-dasharray="${(c * p).toFixed(2)} ${c.toFixed(2)}" transform="rotate(-90 ${h} ${h})"/>` : ''}${p >= 1 ? `<path d="M${(size * 0.32).toFixed(1)} ${(size * 0.52).toFixed(1)}l${(size * 0.13).toFixed(1)} ${(size * 0.13).toFixed(1)} ${(size * 0.23).toFixed(1)}-${(size * 0.26).toFixed(1)}" fill="none" stroke="var(--tt)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>` : ''}</svg>`;
+}
+function donut(parts, size = 132, sw = 20) {
+  const h = size / 2, r = (size - sw) / 2, c = 2 * Math.PI * r, tot = parts.reduce((a, p) => a + p.v, 0) || 1;
+  const gap = parts.length > 1 ? 2.5 : 0;
+  let off = 0;
+  const segs = parts.map((p) => {
+    const len = Math.max(0.5, (p.v / tot) * c - gap);
+    const s = `<circle cx="${h}" cy="${h}" r="${r}" fill="none" stroke="${p.col}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(c - len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${h} ${h})"/>`;
+    off += (p.v / tot) * c; return s;
+  }).join('');
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true"><circle cx="${h}" cy="${h}" r="${r}" fill="none" stroke="var(--sep)" stroke-width="${sw}"/>${segs}</svg>`;
+}
+
+/* ---- transports as tickets */
+const IATA = [[/malpensa/i, 'MXP'], [/linate/i, 'LIN'], [/orio|bergamo/i, 'BGY'], [/fiumicino/i, 'FCO'], [/venezia|marco polo/i, 'VCE'], [/n[oộ]i b[aà]i|h[aà] n[oộ]i|hanoi/i, 'HAN'],
+  [/t[aâ]n s[oơ]n|h[oồ] ch[ií] minh|saigon/i, 'SGN'], [/[dđ][aà] n[aẵ]ng/i, 'DAD'], [/ph[uú] qu[oố]c/i, 'PQC'], [/guarulhos|s[aã]o paulo/i, 'GRU'], [/gale[aã]o|rio de janeiro/i, 'GIG'],
+  [/salvador/i, 'SSA'], [/nairobi|kenyatta/i, 'NBO'], [/mombasa/i, 'MBA'], [/zanzibar/i, 'ZNZ'], [/kilimanjaro/i, 'JRO'], [/dubai/i, 'DXB'], [/doha/i, 'DOH'], [/istanbul/i, 'IST'],
+  [/bangkok|suvarnabhumi/i, 'BKK'], [/singapore|changi/i, 'SIN'], [/paris|charles de gaulle/i, 'CDG'], [/frankfurt|francoforte/i, 'FRA'], [/amsterdam|schiphol/i, 'AMS'], [/heathrow|london|londra/i, 'LHR'], [/madrid/i, 'MAD'], [/lisbon|lisbona/i, 'LIS']];
+function placeOf(x, which) {
+  const name = x[which] || '';
+  const own = x[which + 'Code'];
+  if (own) return { code: own, name, long: false };
+  if (x.kind === 'volo') { const m = IATA.find(([re]) => re.test(name)); if (m) return { code: m[1], name, long: false }; }
+  return { code: name, name: '', long: true };
+}
+const hmOf = (s) => (s && s.includes('T') ? s.split('T')[1].slice(0, 5) : '');
+function ticketHTML(t, x, o = {}) {
+  const A_ = placeOf(x, 'from'), B_ = placeOf(x, 'to');
+  const dd = x.depart ? x.depart.slice(0, 10) : '', ad = x.arrive ? x.arrive.slice(0, 10) : '';
+  const plus = dd && ad ? daysBetween(dd, ad) : 0;
+  const pt = (p, time, r, extra) => `<div class="tk-pt${p.long ? ' long' : ''}${r ? ' r' : ''}"><b>${esc(p.code)}</b>${time ? `<em>${esc(time)}${extra || ''}</em>` : ''}${p.name ? `<span>${esc(p.name)}</span>` : ''}</div>`;
+  const tag = o.tag || 'div', attrs = o.href ? ` href="${o.href}"` : '';
+  return `<${tag} class="ticket${o.cls ? ' ' + o.cls : ''}"${attrs}>
+    <div class="tk-top"><span class="row8" style="gap:6px">${icon(TRK[x.kind]?.i || 'bus', 16)}${esc(TRK[x.kind]?.l || 'Viaggio')}${o.next ? ' · prossimo' : ''}</span><span>${esc(dd ? fmtDW(dd) : '')}</span></div>
+    <div class="tk-main">${pt(A_, hmOf(x.depart), false)}
+      <div class="tk-mid" aria-hidden="true"><i></i>${icon(TRK[x.kind]?.i || 'bus', 20)}<i></i></div>
+      ${pt(B_, hmOf(x.arrive), true, plus > 0 ? `<sup>+${plus}</sup>` : '')}</div>
+    <div class="tk-cut"></div>
+    <div class="tk-foot"><div><span>Compagnia</span><b>${esc(x.operator || '—')}</b></div><div><span>Prenotazione</span><b>${esc(x.code || '—')}</b></div><div><span>Posti</span><b>${esc(x.seats || '—')}</b></div></div>
+  </${tag}>`;
+}
+
+/* ---- lodgings */
+function lodgeStatus(l) {
+  const n = l.notes || '';
+  if (/DA PRENOTARE/.test(n)) return ['Da prenotare', 'todo'];
+  if (!l.name) return ['Da completare', 'todo'];
+  if (/DA VERIFICARE/.test(n)) return ['Da verificare', 'verify'];
+  if (/confermat/i.test(l.payment || '')) return ['Confermata', 'ok'];
+  return ['', ''];
+}
+const lodgeThumb = (l, cls) => (l.cover ? ph(l.cover, cls, '', 'bed', 22) : `<span class="${cls} lill">${ill('bed', 76)}</span>`);
+function nightsStrip(t) {
+  const n = daysBetween(t.start, t.end);
+  if (n <= 0 || n > 45) return '';
+  const lod = [...t.lodgings].filter((l) => l.checkin && l.checkout).sort((a, b) => a.checkin.localeCompare(b.checkin));
+  const cells = []; let issues = 0;
+  const today = todayISO();
+  for (let i = 0; i < n; i++) {
+    const d = addDays(t.start, i);
+    const ls = lod.filter((l) => l.checkin <= d && d < l.checkout);
+    const mv = t.transports.find((x) => x.depart && x.depart.slice(0, 10) === d && ((x.arrive && x.arrive.slice(0, 10) > d) || hmOf(x.depart) >= '18:00'));
+    let cls = '', st = '', tip = '', inner = '';
+    if (ls.length > 1) { cls = 'dup'; issues++; tip = 'due alloggi: ' + ls.map((l) => l.name || l.city).join(' e '); inner = '!'; }
+    else if (ls.length === 1) {
+      const l = ls[0], s = lodgeStatus(l)[1];
+      cls = s === 'todo' ? 'todo' : 'ok'; if (s === 'todo') { issues++; inner = '?'; }
+      st = `--nc:${LCOL[lod.indexOf(l) % LCOL.length]}`; tip = l.name || l.city;
+    } else if (mv) { cls = 'move'; tip = 'in viaggio: ' + mv.from + ' → ' + mv.to; inner = icon(TRK[mv.kind]?.i || 'bus', 12, 2.2); }
+    else { cls = 'none'; issues++; tip = 'nessun alloggio'; inner = '?'; }
+    const D = dOf(d);
+    cells.push(`<div class="nt-c${d === today ? ' today' : ''}"><span class="nt ${cls}" style="${st}" title="${esc(fmtDW(d) + ': ' + tip)}">${inner}</span><small>${D.getDate()}</small></div>`);
+  }
+  return `<section class="card stack10">
+    <div class="secthead"><b style="font-size:16px">Notte per notte</b><span class="small">${n} notti${issues ? ` · <b style="color:var(--c)">${issues} da sistemare</b>` : ' · tutto a posto'}</span></div>
+    <div class="nights" style="grid-template-columns:repeat(${n},minmax(0,1fr))">${cells.join('')}</div>
+    <div class="nlegend"><span><i class="nt ok" style="--nc:${LCOL[0]}"></i>Hotel</span><span><i class="nt move"></i>In viaggio</span><span><i class="nt none"></i>Da sistemare</span></div>
+  </section>`;
+}
+
+function vPren(t, q) {
+  const tab = q.tab === 't' ? 't' : 'a';
+  const today = todayISO();
+  const lod = [...t.lodgings].sort((a, b) => (a.checkin || '').localeCompare(b.checkin || ''));
+  const trs = [...t.transports].sort((a, b) => (a.depart || '').localeCompare(b.depart || ''));
+  const nextTr = trs.find((x) => (x.depart || '').slice(0, 10) >= today);
+  return `<div class="page">
+    ${pageHead(t, 'Prenotazioni', `${t.lodgings.length} alloggi · ${t.transports.length} trasporti`, 'bed')}
+    <div class="seg" role="tablist"><a role="tab" class="${tab === 'a' ? 'on' : ''}" href="#/t/${t.id}/pren?tab=a">Alloggi (${t.lodgings.length})</a><a role="tab" class="${tab === 't' ? 'on' : ''}" href="#/t/${t.id}/pren?tab=t">Trasporti (${t.transports.length})</a></div>
+    ${tab === 'a' ? `${nightsStrip(t)}<div class="stack10">${lod.map((l) => {
+      const now = l.checkin && l.checkin <= today && today < l.checkout;
+      const n = l.checkin && l.checkout ? daysBetween(l.checkin, l.checkout) : 0;
+      const [sl, sc] = lodgeStatus(l);
+      return `<a class="card lodge${now ? ' hl' : ''}" href="#/t/${t.id}/l/${l.id}">${lodgeThumb(l, 'lthumb')}
+        <div class="stack8" style="gap:3px;min-width:0">
+          <div class="secthead"><span class="kicker" style="color:var(--tt)">${esc(l.city)}</span>${now ? '<span class="tag solid">Attuale</span>' : sl ? `<span class="st ${sc}">${esc(sl)}</span>` : ''}</div>
+          <b style="font-size:16px;line-height:1.25${l.name ? '' : ';color:var(--faint)'}">${esc(l.name || 'Nome hotel da inserire')}</b>
+          <span class="stay">${l.checkin ? esc(fmtDW(l.checkin)) : ''}${l.checkout ? ' → ' + esc(fmtDW(l.checkout)) : ''}</span>
+          ${n ? `<span class="ndots" aria-label="${n} notti">${'<i></i>'.repeat(Math.min(n, 14))}<span>${n} ${n === 1 ? 'notte' : 'notti'}</span></span>` : ''}
+        </div></a>`;
+    }).join('') || '<div class="card empty">Nessun alloggio.</div>'}</div>
+    <button class="btn dash" data-a="addLodging">${icon('plus')} Aggiungi alloggio</button>`
+    : `<div class="stack10">${trs.map((x) => {
+      const past = (x.arrive || x.depart || '').slice(0, 10) < today;
+      return ticketHTML(t, x, { tag: 'a', href: `#/t/${t.id}/tr/${x.id}`, cls: (x === nextTr ? 'next' : '') + (past ? ' past' : ''), next: x === nextTr });
+    }).join('') || '<div class="card empty">Nessun trasporto.</div>'}</div>
+    <button class="btn dash" data-a="addTransport">${icon('plus')} Aggiungi trasporto</button>`}
+  </div>`;
+}
 function vLodging(t, l) {
   const n = l.checkin && l.checkout ? daysBetween(l.checkin, l.checkout) : 0;
   const doc = l.doc ? docByBlob(t, l.doc) : null;
+  const [sl, sc] = lodgeStatus(l);
   return `<div class="page">
     ${back('#/t/' + t.id + '/pren', 'Prenotazioni')}
-    <div class="stack8" style="gap:3px"><span class="kicker" style="color:var(--tt)">${esc(l.city)}${n ? ' · ' + n + (n === 1 ? ' notte' : ' notti') : ''}</span>
-      <h1 class="disp h-m">${esc(l.name || 'Alloggio')}</h1></div>
+    <div class="row" style="align-items:center">
+      <button class="lphoto" data-a="lodgingPhoto" aria-label="Cambia la foto dell'hotel">${lodgeThumb(l, 'lthumb big')}<span class="lcam">${icon('cam', 14)}</span></button>
+      <div class="grow stack8" style="gap:3px"><span class="kicker" style="color:var(--tt)">${esc(l.city)}${n ? ' · ' + n + (n === 1 ? ' notte' : ' notti') : ''}</span>
+        <h1 class="disp h-m">${esc(l.name || 'Alloggio')}</h1>${sl ? `<span><span class="st ${sc}">${esc(sl)}</span></span>` : ''}</div></div>
     ${l.addressLocal ? taxiBlock(t, l.name, l.addressLocal) + `<button class="btn dark" data-a="taxiLodging">${icon('expand', 18)} Schermo intero per il tassista</button>`
       : `<div class="card stack8" style="background:var(--cs);border-color:var(--cline)"><b style="color:var(--ci)">Manca l'indirizzo in lingua locale</b><span style="font-size:14px">Copialo dalla conferma della prenotazione (Booking, Agoda… spesso lo riportano già in ${esc((t.langName || 'lingua locale').toLowerCase())}). Così potrai mostrarlo ai tassisti.</span><button class="btn sm" data-a="editLodging">${icon('edit', 18)} Aggiungi nome e indirizzo</button></div>`}
     ${l.address ? `<div class="card stack8"><span class="kicker">In italiano</span><span style="font-size:15px">«Per favore, mi porti a questo indirizzo»</span><b>${esc(l.address)}</b></div>` : ''}
-    <div class="facts">
-      <div class="fact"><span>Check-in</span><b>${esc(fmtDW(l.checkin) || '—')}</b></div>
-      <div class="fact"><span>Check-out</span><b>${esc(fmtDW(l.checkout) || '—')}</b></div>
-      <div class="fact"><span>Codice</span><b>${esc(l.code || '—')}</b></div>
-      <div class="fact"><span>Pagamento</span><b>${esc(l.payment || '—')}</b></div>
-    </div>
+    <div class="staycard"><div><span>Check-in</span><b>${esc(fmtDW(l.checkin) || '—')}</b></div><div class="mid">${n ? `<span class="ndots">${'<i></i>'.repeat(Math.min(n, 14))}</span><small>${n} ${n === 1 ? 'notte' : 'notti'}</small>` : ''}</div><div class="r"><span>Check-out</span><b>${esc(fmtDW(l.checkout) || '—')}</b></div></div>
+    ${l.code || l.payment ? `<div class="card stack8">${l.code ? `<div class="secthead"><span class="kicker">Codice</span><b>${esc(l.code)}</b></div>` : ''}${l.payment ? `<span class="kicker">Pagamento</span><span style="font-size:15px">${esc(l.payment)}</span>` : ''}</div>` : ''}
     ${l.notes ? `<div class="card pre" style="font-size:15px">${esc(l.notes)}</div>` : ''}
     ${doc ? `<button class="btn sec" data-a="openBlobDoc" data-k="${esc(doc.blob)}">${icon('doc', 18)} ${esc(doc.name)}</button>` : ''}
     ${l.phone ? `<a class="btn sec" href="tel:${esc(l.phone.replace(/[^\d+]/g, ''))}">${icon('phone', 18)} Chiama ${esc(l.phone)}</a>` : ''}
@@ -1337,25 +1554,78 @@ function vLodging(t, l) {
 }
 function vTransport(t, x) {
   const doc = x.doc ? docByBlob(t, x.doc) : null;
-  const facts = [['Partenza', fmtDT(x.depart)], ['Arrivo', fmtDT(x.arrive)], ['Codice', x.code], ['Posti', x.seats]].filter((f) => f[1]);
   return `<div class="page">
     ${back('#/t/' + t.id + '/pren?tab=t', 'Prenotazioni')}
-    <div class="row"><span class="icotile">${icon(TRK[x.kind]?.i || 'bus', 24)}</span><div class="grow"><span class="kicker" style="color:var(--tt)">${esc(TRK[x.kind]?.l || '')}${x.operator ? ' · ' + esc(x.operator) : ''}</span>
-      <h1 class="disp h-m">${esc(x.from)} → ${esc(x.to)}</h1></div></div>
-    ${facts.length ? `<div class="facts">${facts.map((f) => `<div class="fact"><span>${f[0]}</span><b>${esc(f[1])}</b></div>`).join('')}</div>` : ''}
+    ${ticketHTML(t, x, { cls: 'big' })}
+    ${doc ? `<button class="btn" data-a="openBlobDoc" data-k="${esc(doc.blob)}">${icon('doc', 18)} Apri il biglietto originale</button>` : ''}
     ${x.notes ? `<div class="card pre" style="font-size:15px">${esc(x.notes)}</div>` : ''}
     ${x.pickupLocal ? `<div class="card stack8"><span class="kicker">Punto di partenza</span><b>${esc(x.pickupLocal)}</b><button class="btn sec sm" data-a="taxiTr" data-w="pickupLocal">${icon('car', 18)} Mostra al tassista</button></div>` : ''}
     ${x.dropLocal ? `<div class="card stack8"><span class="kicker">Punto di arrivo</span><b>${esc(x.dropLocal)}</b><button class="btn sec sm" data-a="taxiTr" data-w="dropLocal">${icon('car', 18)} Mostra al tassista</button></div>` : ''}
-    ${doc ? `<button class="btn sec" data-a="openBlobDoc" data-k="${esc(doc.blob)}">${icon('doc', 18)} ${esc(doc.name)}</button>` : ''}
     <div class="row2"><button class="btn sec sm" data-a="editTransport">${icon('edit', 18)} Modifica</button><button class="btn danger sm" data-a="deleteTransport">${icon('trash', 18)} Elimina</button></div>
   </div>`;
 }
 
+/* ---- money */
+let EXP_CUR = 'LOC';
+function vSpese(t) {
+  const total = t.expenses.reduce((a, e) => a + toEur(t, e), 0);
+  const today = todayISO();
+  const pre = t.expenses.filter((e) => e.date < t.start).reduce((a, e) => a + toEur(t, e), 0);
+  const todayTot = t.expenses.filter((e) => e.date === today).reduce((a, e) => a + toEur(t, e), 0);
+  const pct = t.budget ? Math.min(100, Math.round((total / t.budget) * 100)) : 0;
+  const byCat = {};
+  t.expenses.forEach((e) => { byCat[e.cat] = (byCat[e.cat] || 0) + toEur(t, e); });
+  const cats = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
+  const groups = {};
+  [...t.expenses].sort((a, b) => b.date.localeCompare(a.date)).forEach((e) => { const k = e.date < t.start ? 'pre' : e.date; (groups[k] = groups[k] || []).push(e); });
+  const keys = Object.keys(groups).sort((a, b) => (a === 'pre' ? 1 : b === 'pre' ? -1 : b.localeCompare(a)));
+  const loc = t.currency.code !== 'EUR';
+  const row = (e) => `<button class="exr" data-a="editExp" data-id="${e.id}">${ill(excOf(e.cat)[0], 40)}<span class="grow"><b>${esc(e.desc || e.cat)}</b><span class="small">${esc(e.cat)}${e.date < t.start ? ' · ' + esc(fmtD(e.date)) : ''}</span></span><span class="r"><b>${e.cur === 'EUR' ? fmtEur(e.amount) : esc(fmtLoc(t, e.amount))}</b>${loc ? `<span class="small">≈ ${e.cur === 'EUR' ? esc(fmtLoc(t, e.amount * t.currency.rate)) : fmtEur(toEur(t, e))}</span>` : ''}</span></button>`;
+  return `<div class="page" style="padding-bottom:calc(var(--safe-b) + 110px)">
+    ${pageHead(t, 'Spese', t.expenses.length + (t.expenses.length === 1 ? ' spesa' : ' spese') + ' registrate', 'wallet')}
+    <div class="money">
+      <span style="font-size:13px;color:var(--deep-mute)">Totale speso</span>
+      <span class="big" data-count="${total}">${fmtEur(total)}</span>
+      ${loc ? `<span style="font-size:15px;color:var(--deep-mute)">≈ ${esc(fmtLoc(t, total * t.currency.rate))}</span>` : ''}
+      ${t.budget ? `<div class="bar"><i style="width:${pct}%"></i></div><span style="font-size:13px;color:var(--deep-mute)">${pct}% del budget di ${fmtEur(t.budget)} · restano ${fmtEur(Math.max(0, t.budget - total))}</span>` : ''}
+      <div class="msplit"><div><span>Prima di partire</span><b>${fmtEur(pre)}</b></div><div><span>In viaggio</span><b>${fmtEur(total - pre)}</b>${todayTot ? `<span>di cui oggi ${fmtEur(todayTot)}</span>` : ''}</div></div>
+    </div>
+    ${cats.length ? `<section class="card donutcard"><div class="dn">${donut(cats.map(([c, v]) => ({ v, col: excOf(c)[1] })))}<span class="dn-c">${ill(excOf(cats[0][0])[0], 46)}</span></div>
+      <ul class="legend">${cats.map(([c, v]) => `<li><i style="background:${excOf(c)[1]}"></i><span class="grow">${esc(c)}<small>${fmtEur(v)}</small></span><b>${(() => { const p = (v / (total || 1)) * 100; return p > 0 && p < 1 ? '&lt;1' : Math.round(p); })()}%</b></li>`).join('')}</ul></section>` : ''}
+    ${keys.map((k) => `<section class="stack8"><div class="secthead"><span class="kicker">${k === 'pre' ? 'Prima di partire' : esc(fmtDW(k)) + (k === today ? ' · oggi' : '')}</span><span class="small"><b>${fmtEur(groups[k].reduce((a, e) => a + toEur(t, e), 0))}</b></span></div><div class="listcard">${groups[k].map(row).join('')}</div></section>`).join('')
+      || `<div class="card empty">Nessuna spesa registrata.<br>Tocca + per aggiungere la prima.</div>`}
+    <button class="fab" data-a="newExp" aria-label="Nuova spesa">${icon('plus', 28, 2.4)}</button>
+  </div>`;
+}
+function expSheet(t) {
+  const loc = t.currency.code !== 'EUR';
+  layer(`<div class="ov" data-close="1"><form class="sheet" data-f="addExp" novalidate>
+    <div class="sheet-h"><h2 class="disp h-m">Nuova spesa</h2><button type="button" class="iconbtn" data-a="closeLayer" aria-label="Chiudi">${icon('x')}</button></div>
+    <div class="row8" style="align-items:flex-end">
+      <label class="fld grow"><span>Importo</span><input class="inp" name="amount" inputmode="decimal" autocomplete="off" placeholder="0" data-in="expPrev" style="font-size:22px;font-weight:700;min-height:56px"></label>
+      ${loc ? `<div class="toggle" role="radiogroup" aria-label="Valuta"><label><input type="radio" name="cur" value="LOC"${EXP_CUR === 'LOC' ? ' checked' : ''} data-ch="expCur"><span>${esc(t.currency.symbol)}</span></label><label><input type="radio" name="cur" value="EUR"${EXP_CUR === 'EUR' ? ' checked' : ''} data-ch="expCur"><span>€</span></label></div>` : '<input type="hidden" name="cur" value="EUR">'}
+    </div>
+    <span class="small" id="expPrev">&nbsp;</span>
+    <label class="fld"><span>Descrizione</span><input class="inp" name="desc" autocomplete="off" placeholder="Es. Phở a colazione"></label>
+    <div class="chips ichips" role="radiogroup" aria-label="Categoria">${EXCATS.filter((c) => c !== 'Prima di partire').map((c, i) => `<label><input type="radio" name="cat" value="${c}"${i === 0 ? ' checked' : ''}><span>${ill(excOf(c)[0], 24)}${c}</span></label>`).join('')}</div>
+    <label class="fld"><span>Data</span><input class="inp" type="date" name="date" value="${todayISO()}"></label>
+    <button class="btn" type="submit">Salva spesa</button>
+  </form></div>`);
+  setTimeout(() => { const i = $('#layer [name=amount]'); if (i) i.focus(); }, 80);
+}
+
+/* ---- exchange with banknotes */
+const BANKNOTES = {
+  VND: { 10000: '#9A6A2E', 20000: '#3569AE', 50000: '#B04A78', 100000: '#3A8352', 200000: '#B0502C', 500000: '#23809E' },
+  EUR: { 5: '#7E878C', 10: '#B94C47', 20: '#4170B2', 50: '#C26F1A', 100: '#36905A', 200: '#A08012', 500: '#82559E' }
+};
 const CX = { v: null, dir: 'L2E' };
 function niceRound(n) { if (n <= 0) return 0; const p = Math.pow(10, Math.floor(Math.log10(n)) - 1); return Math.round(n / p) * p; }
 function cxQuick(t) {
   const r = t.currency.rate || 1;
-  if (CX.dir === 'E2L') return [1, 5, 10, 20, 50, 100];
+  if (CX.dir === 'E2L') return [5, 10, 20, 50, 100, 200];
+  const own = BANKNOTES[t.currency.code];
+  if (own) { const vs = Object.keys(own).map(Number).filter((v) => v / r >= 0.2 && v / r <= 400); if (vs.length >= 4) return vs.slice(0, 6); }
   const out = [];
   for (let e = -2; e < 12 && out.length < 6; e++) for (const m of [1, 2, 5]) {
     const v = m * Math.pow(10, e); const eur = v / r;
@@ -1369,9 +1639,10 @@ function vCambio(t) {
   const fromLab = CX.dir === 'L2E' ? loc.name || loc.code : 'Euro';
   const toLab = CX.dir === 'L2E' ? 'Euro' : loc.name || loc.code;
   const fromSym = CX.dir === 'L2E' ? loc.symbol : '€';
+  const pal = BANKNOTES[CX.dir === 'L2E' ? loc.code : 'EUR'] || {};
+  const real = Object.keys(pal).length > 0;
   return `<div class="page">
-    ${back('#/t/' + t.id, t.name)}
-    <h1 class="disp h-l">Cambio valuta</h1>
+    ${pageHead(t, 'Cambio valuta', '1 € = ' + esc(fmtLoc(t, loc.rate)), 'swap')}
     <div class="card stack8" style="padding:18px">
       <label for="cxin" style="font-size:13px;font-weight:700;color:var(--muted)">${esc(fromLab)} (${esc(fromSym)})</label>
       <input id="cxin" class="disp" inputmode="decimal" autocomplete="off" value="${esc(nf(CX.v, CX.dir === 'L2E' ? curDec(t) : 2).replace(/,00$/, ''))}" data-in="cx" style="border:none;outline:none;font-size:40px;padding:0;width:100%;background:transparent;color:var(--ink)">
@@ -1379,8 +1650,12 @@ function vCambio(t) {
       <span style="font-size:13px;font-weight:700;color:var(--muted)">${esc(toLab)}</span>
       <span class="disp" id="cxout" style="font-size:40px;color:var(--tt)" aria-live="polite"></span>
     </div>
-    <section class="stack8"><span class="kicker">Importi veloci</span>
-      <div class="row2">${cxQuick(t).map((a) => `<button class="card" style="padding:10px 14px;min-height:58px" data-a="cxPick" data-v="${a}"><b style="font-size:15px">${CX.dir === 'L2E' ? esc(fmtLoc(t, a)) : fmtEur(a)}</b><br><span class="small">≈ ${CX.dir === 'L2E' ? fmtEur(a / loc.rate) : esc(fmtLoc(t, a * loc.rate))}</span></button>`).join('')}</div></section>
+    <section class="stack8"><div class="secthead"><span class="kicker">${real ? 'Le banconote' : 'Importi veloci'}</span><span class="small">tocca per convertire</span></div>
+      <div class="notes">${cxQuick(t).map((a) => {
+        const col = pal[a];
+        const val = CX.dir === 'L2E' ? nf(a, curDec(t)) : nf(a, 0);
+        return `<button class="bnote${col ? '' : ' plain'}" style="${col ? '--nc:' + col : ''}" data-a="cxPick" data-v="${a}"><span class="nc">${esc(val)}</span><span class="nv">${esc(val)}<small>${esc(fromSym)}</small></span><span class="ne">≈ ${CX.dir === 'L2E' ? fmtEur(a / loc.rate) : esc(fmtLoc(t, a * loc.rate))}</span></button>`;
+      }).join('')}</div></section>
     <div class="card stack8" style="background:var(--cs);border-color:var(--cline)">
       <div class="secthead"><b style="color:var(--ci)">Tasso usato</b><button class="btn sm sec" style="width:auto" data-a="editRate">Modifica</button></div>
       <b style="font-size:17px">1 € = ${esc(fmtLoc(t, loc.rate))}</b>
@@ -1388,13 +1663,8 @@ function vCambio(t) {
     </div>
   </div>`;
 }
-function cxUpdate() {
-  const t = R.t; if (!t) return;
-  const out = $('#cxout'); if (!out) return;
-  const v = CX.v || 0;
-  out.textContent = CX.dir === 'L2E' ? fmtEur(v / (t.currency.rate || 1)) : fmtLoc(t, v * (t.currency.rate || 1));
-}
 
+/* ---- notes & checklists */
 function vNote(t, q) {
   const tab = ['bring', 'buy', 'notes'].includes(q.tab) ? q.tab : 'bring';
   const tabs = [['bring', 'Da portare'], ['buy', 'Da comprare'], ['notes', 'Appunti']];
@@ -1407,23 +1677,58 @@ function vNote(t, q) {
     const groups = [];
     list.forEach((x) => { const g = x.group || 'Altro'; if (!groups.includes(g)) groups.push(g); });
     const done = list.filter((x) => x.done).length;
-    body = `<div class="secthead"><span class="small" id="licount">${done} di ${list.length} completati</span>${done ? `<button class="btn sec sm" style="width:auto" data-a="resetList">${icon('reset', 16)} Togli le spunte</button>` : ''}</div>
-      ${groups.map((g) => `<section class="stack8"><span class="kicker">${esc(g)}</span><div class="listcard">${list.filter((x) => (x.group || 'Altro') === g).map((x) => `<div class="li${x.done ? ' done' : ''}"><label><input type="checkbox" data-ch="li" data-id="${x.id}"${x.done ? ' checked' : ''}><span class="lt">${esc(x.label)}</span></label><button class="mini" data-a="editLi" data-id="${x.id}" aria-label="Modifica">${icon('dots')}</button></div>`).join('')}</div></section>`).join('') || '<div class="card empty">Lista vuota.</div>'}
+    const pct = list.length ? Math.round((done / list.length) * 100) : 0;
+    const li = (x) => `<div class="li${x.done ? ' done' : ''}"><label><input type="checkbox" data-ch="li" data-id="${x.id}"${x.done ? ' checked' : ''}><span class="lt">${esc(x.label)}</span></label><button class="mini" data-a="editLi" data-id="${x.id}" aria-label="Modifica">${icon('dots')}</button></div>`;
+    body = `${list.length ? `<div class="progress"><div class="secthead"><span class="small"><b style="color:var(--ink)">${done} di ${list.length}</b> completati</span>${done ? `<button class="btn sec sm" style="width:auto;min-height:36px" data-a="resetList">${icon('reset', 16)} Togli le spunte</button>` : `<span class="small">${pct}%</span>`}</div><div class="bar light"><i style="width:${Math.max(pct, 2)}%"></i></div></div>` : ''}
+      ${groups.map((g) => {
+        const its = list.filter((x) => (x.group || 'Altro') === g);
+        const gd = its.filter((x) => x.done).length;
+        return `<section class="stack8"><div class="lghead${gd === its.length ? ' full' : ''}">${ring(gd, its.length)}<span class="kicker grow">${esc(g)}</span><span class="small">${gd}/${its.length}</span></div><div class="listcard">${[...its.filter((x) => !x.done), ...its.filter((x) => x.done)].map(li).join('')}</div></section>`;
+      }).join('') || '<div class="card empty">Lista vuota.</div>'}
       <form class="addrow" data-f="addLi" novalidate><label class="sr" for="liNew">Nuovo elemento</label><input id="liNew" class="inp" name="label" placeholder="Aggiungi…" autocomplete="off"><input class="inp" name="group" list="grpl" placeholder="Gruppo" value="${esc(groups[groups.length - 1] || '')}" autocomplete="off" aria-label="Gruppo"><datalist id="grpl">${groups.map((g) => `<option value="${esc(g)}"></option>`).join('')}</datalist><button class="btn" style="padding:0;min-height:48px" aria-label="Aggiungi">${icon('plus')}</button></form>`;
   }
+  const all = [...t.lists.bring, ...t.lists.buy];
   return `<div class="page">
-    ${back('#/t/' + t.id, t.name)}
-    <h1 class="disp h-l">Note</h1>
+    ${pageHead(t, 'Note', `${all.filter((x) => x.done).length} di ${all.length} spuntati · ${t.notes.length} appunti`, 'list')}
     <div class="seg" role="tablist">${tabs.map(([k, l]) => `<a role="tab" class="${k === tab ? 'on' : ''}" href="#/t/${t.id}/note?tab=${k}">${l}</a>`).join('')}</div>
     ${body}
   </div>`;
 }
 
+/* ---- documents with previews */
 function docBadge(d) {
   const ty = d.type || '';
   if (ty.startsWith('image/')) return '<span class="doctype img">FOTO</span>';
   if (ty.startsWith('text/')) return '<span class="doctype txt">TXT</span>';
   return '<span class="doctype">PDF</span>';
+}
+const THUMBS = new Map();
+let THUMBQ = Promise.resolve();
+function queueThumbs(root) { $$('[data-thumb]', root).forEach((el) => { THUMBQ = THUMBQ.then(() => docThumb(el)).catch(() => {}); }); }
+async function docThumb(el) {
+  if (!document.body.contains(el)) return;
+  const k = el.dataset.thumb, ty = el.dataset.ty || '';
+  const show = (u) => { el.style.backgroundImage = `url("${u}")`; el.classList.add('has-img'); };
+  try {
+    if (ty.startsWith('image/')) { const u = await blobURL(k); if (u) show(u); return; }
+    if (ty.startsWith('text/')) { const b = await getBlob(k); if (b) { el.insertAdjacentHTML('afterbegin', `<span class="dt-txt">${esc((await b.text()).slice(0, 320))}</span>`); el.classList.add('has-txt'); } return; }
+    let u = THUMBS.get(k) || await DB.get('meta', 'thumb:' + k);
+    if (!u) {
+      const b = await getBlob(k); if (!b) return;
+      const lib = await getPdfLib();
+      const pdf = await lib.getDocument({ data: new Uint8Array(await b.arrayBuffer()) }).promise;
+      const pg = await pdf.getPage(1);
+      const v1 = pg.getViewport({ scale: 1 }), vp = pg.getViewport({ scale: 200 / v1.width });
+      const c = document.createElement('canvas'); c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+      const cx = c.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, c.width, c.height);
+      await pg.render({ canvasContext: cx, viewport: vp }).promise;
+      u = c.toDataURL('image/jpeg', 0.75);
+      try { pdf.destroy(); } catch (e) {}
+      DB.put('meta', u, 'thumb:' + k).catch(() => {});
+    }
+    THUMBS.set(k, u);
+    if (document.body.contains(el)) show(u);
+  } catch (e) { console.warn('anteprima', e); }
 }
 function vDocs(t, q) {
   const scope = q.tab === 'global' ? 'global' : 'trip';
@@ -1432,15 +1737,23 @@ function vDocs(t, q) {
   docs.forEach((d) => { if (!cats.includes(d.cat)) cats.push(d.cat); });
   cats.sort((a, b) => (DOCCATS.indexOf(a) + 99) % 99 - (DOCCATS.indexOf(b) + 99) % 99);
   return `<div class="page">
-    ${back('#/t/' + t.id, t.name)}
-    <h1 class="disp h-l">Documenti</h1>
+    ${pageHead(t, 'Documenti', (t.docs.length + S.global.docs.length) + ' documenti · tutti offline', 'doc')}
     <div class="seg" role="tablist"><a role="tab" class="${scope === 'trip' ? 'on' : ''}" href="#/t/${t.id}/docs">Questo viaggio</a><a role="tab" class="${scope === 'global' ? 'on' : ''}" href="#/t/${t.id}/docs?tab=global">Sempre con me</a></div>
     ${scope === 'global' ? '<p class="sub" style="font-size:14px">Documenti validi per tutti i viaggi: passaporto, carta d\'identità, patente, tessera sanitaria…</p>' : ''}
-    ${cats.map((c) => `<section class="stack8"><span class="kicker">${esc(c)}</span>${docs.filter((d) => d.cat === c).map((d) => `<button class="card row" style="padding:11px 14px" data-a="viewDoc" data-scope="${scope}" data-id="${d.id}">${docBadge(d)}<span class="grow"><b style="font-size:15px">${esc(d.name)}</b><br><span class="small">Disponibile offline</span></span><span class="chev">${icon('right')}</span></button>`).join('')}</section>`).join('') || '<div class="card empty">Nessun documento.</div>'}
+    ${cats.map((c) => `<section class="stack8"><span class="kicker">${esc(c)}</span>${docs.filter((d) => d.cat === c).map((d) => `<button class="card row docrow" data-a="viewDoc" data-scope="${scope}" data-id="${d.id}"><span class="dthumb" data-thumb="${esc(d.blob)}" data-ty="${esc(d.type || '')}">${docBadge(d)}</span><span class="grow"><b style="font-size:15px">${esc(d.name)}</b><br><span class="small">${icon('check', 12, 3)} Disponibile offline</span></span><span class="chev">${icon('right')}</span></button>`).join('')}</section>`).join('') || '<div class="card empty">Nessun documento.</div>'}
     <button class="btn" data-a="uploadDoc" data-scope="${scope}">${icon('upload', 20)} Carica PDF o foto</button>
   </div>`;
 }
 
+/* ---- celebration when a stage gets completed */
+function celebrate(t, s) {
+  const el = document.createElement('div');
+  el.className = 'stampov'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Tappa completata');
+  el.innerHTML = `<div class="paper">${stampHTML(t, s, { round: true, cls: 'in', size: 170 })}</div><b>Tappa completata!</b><span>Il timbro di ${esc(s.name.split('·')[0].trim())} è nella tua raccolta.</span>`;
+  el.addEventListener('click', () => el.remove());
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3400);
+}
 
 /* ============================================================ theme */
 function applyTheme(th) {
@@ -1516,8 +1829,7 @@ function vSos(t) {
   const meFilled = ME_FIELDS.filter((f) => me[f.k]);
   const KINDICON = { Ambasciata: 'flag', Consolato: 'flag', Assicurazione: 'shield', Ospedale: 'heart' };
   return `<div class="page">
-    ${back('#/t/' + t.id, t.name)}
-    <div class="stack8" style="gap:4px"><h1 class="disp h-l">Emergenze</h1><p class="sub">Tocca un numero per chiamarlo. Tutto è disponibile anche offline.</p></div>
+    ${pageHead(t, 'Emergenze', 'Tocca un numero per chiamarlo. Tutto è disponibile anche offline.', 'sos', 'sos')}
     <section class="stack8">
       <div class="secthead"><span class="kicker">Numeri locali · ${esc(t.name)}</span><button class="btn sec sm" style="width:auto" data-a="editNumbers">${icon('edit', 16)} Modifica</button></div>
       ${em.numbers.length ? `<div class="sosgrid">${em.numbers.map((n) => `<a class="sosnum" href="${telHref(n.phone)}"><b>${esc(n.phone)}</b><span>${esc(n.label)}</span>${n.local ? `<small>${esc(n.local)}</small>` : ''}</a>`).join('')}</div>`
@@ -1599,8 +1911,7 @@ function vFoto(t) {
   const groups = tripPhotos(t);
   const n = groups.reduce((a, g) => a + g.photos.length, 0);
   return `<div class="page">
-    ${back('#/t/' + t.id, t.name)}
-    <div class="stack8" style="gap:4px"><h1 class="disp h-l">Foto</h1><p class="sub">${n} foto · ${groups.length} ${groups.length === 1 ? 'giorno' : 'giorni'}</p></div>
+    ${pageHead(t, 'Foto', `${n} foto · ${groups.length} ${groups.length === 1 ? 'giorno' : 'giorni'}`, 'img')}
     ${groups.map((g) => `<section class="stack8">
       <div class="secthead"><span class="kicker">Giorno ${daysBetween(t.start, g.d.date) + 1} · ${esc(fmtDW(g.d.date))}</span><a class="small" href="#/t/${t.id}/s/${g.s.id}?d=${g.di}">${esc(g.s.name)} ${icon('right', 12)}</a></div>
       <div class="gal">${g.photos.map((p, i) => `<button class="ph${i === 0 && g.photos.length >= 3 ? ' big' : ''}" data-blob="${esc(p.k)}" data-a="galPhoto" data-k="${esc(p.k)}" data-iid="${p.it ? p.it.id : ''}" aria-label="Apri foto${p.it ? ' di ' + esc(p.it.name) : ''}"><span class="phi">${icon('img', 18, 1.6)}</span></button>`).join('')}</div>
@@ -1762,8 +2073,12 @@ const A = {
   async shareBlob(el) { const b = await getBlob(el.dataset.k); if (!b) return; const n = el.dataset.n || 'file'; const ext = b.type === 'application/pdf' ? '.pdf' : b.type.startsWith('image/') ? '.jpg' : b.type.startsWith('text/') ? '.txt' : ''; shareOrDownload(b, n.replace(/[\\/:*?"<>|]+/g, '-') + (n.toLowerCase().endsWith(ext) ? '' : ext)); },
   async toggleDone(el) {
     const t = R.t; const ctx = findItem(t, el.dataset.id); if (!ctx) return;
+    const was = stageDone(ctx.s);
     ctx.it.done = !ctx.it.done; POP = ctx.it.done ? ctx.it.id : null; await saveTrip(t); rerender();
+    if (!was && stageDone(ctx.s)) setTimeout(() => celebrate(t, ctx.s), 350);
   },
+  newExp() { expSheet(R.t); },
+  async lodgingPhoto() { const t = R.t, l = R.l; const [k] = await addPhotos(false); if (!k) return; const old = l.cover; l.cover = k; await saveTrip(t); if (old) await gcBlob(old); rerender(); toast('Foto dell\'hotel aggiornata'); },
   addStage() {
     const t = R.t;
     const lastEnd = t.stages.length ? stageRange(t.stages[t.stages.length - 1])[1] : null;
@@ -1964,8 +2279,8 @@ const C = {
   async li(el) {
     const t = R.t, tab = R.q.tab === 'buy' ? 'buy' : 'bring'; const x = t.lists[tab].find((y) => y.id === el.dataset.id); if (!x) return;
     x.done = el.checked; el.closest('.li').classList.toggle('done', x.done);
-    const list = t.lists[tab]; const c = $('#licount'); if (c) c.textContent = list.filter((y) => y.done).length + ' di ' + list.length + ' completati';
     await saveTrip(t);
+    clearTimeout(C._t); C._t = setTimeout(() => { if (R.p && R.p[2] === 'note') rerender(); }, 450);
   },
   expCur(el) { EXP_CUR = el.value; I.expPrev($('[name=amount]')); },
   curPreset(el) {
@@ -2027,7 +2342,7 @@ const F = {
     if (!(a > 0)) { toast('Inserisci un importo'); return; }
     const cat = (f.querySelector('[name=cat]:checked') || {}).value || 'Altro';
     t.expenses.push({ id: uid('ex'), desc: f.elements.desc.value.trim(), amount: a, cur, cat, date: f.elements.date.value || todayISO() });
-    await saveTrip(t); toast('Spesa salvata'); rerender();
+    await saveTrip(t); closeLayer(); toast('Spesa salvata'); rerender();
   },
   async addLi(f) {
     const t = R.t, tab = R.q.tab === 'buy' ? 'buy' : 'bring';
