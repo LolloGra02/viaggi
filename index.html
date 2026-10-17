@@ -536,7 +536,7 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 const uid = (p) => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 const clone = (o) => JSON.parse(JSON.stringify(o));
 const TODAY_OVERRIDE = new URLSearchParams(location.search).get('oggi');
-const APP_VERSION = '9';
+const APP_VERSION = '10';
 
 const P = {
   left: '<path d="m15 6-6 6 6 6"/>', right: '<path d="m9 6 6 6-6 6"/>', check: '<path d="M20 6 9 17l-5-5"/>',
@@ -1450,7 +1450,7 @@ function cxUpdate() {
 /* ============================================================ v8 helpers */
 const EXC = { Cibo: ['cibo', '#E07A3F'], Trasporti: ['trasporto', '#3C78C2'], Alloggio: ['bed', '#7A5BB0'], Attrazioni: ['visita', '#2F8A5F'], Shopping: ['shop', '#C9487A'], 'Prima di partire': ['suitcase', '#B08A3E'], Altro: ['altro', '#8A9590'] };
 const excOf = (c) => EXC[c] || EXC.Altro;
-const LCOL = ['#2F8A5F', '#3C78C2', '#B08A3E', '#7A5BB0', '#C9487A', '#0F7C86', '#B5562E'];
+const LCOL = ['#2F8A5F', '#3C78C2', '#B08A3E', '#7A5BB0', '#C9487A', '#0F7C86', '#56698F'];
 function pageHead(t, title, sub, il, cls) {
   return `${back('#/t/' + t.id, t.name)}
     <header class="phead${cls ? ' ' + cls : ''}"><div class="grow"><h1 class="disp h-l">${esc(title)}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div>${ill(il, 64)}</header>`;
